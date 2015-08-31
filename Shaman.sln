@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaman.Domain", "Domain\Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaman.Data", "DataAccess\Shaman.Data.csproj", "{213D13CD-1A5A-4555-A298-B4EA88FB5908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaman.Web", "Store\Shaman.Web.csproj", "{8F6D303C-7182-4B7B-8502-7537760DBB9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaman.Web", "Web\Shaman.Web.csproj", "{8F6D303C-7182-4B7B-8502-7537760DBB9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
