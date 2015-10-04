@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ShamanExpressDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShamanExpressDLL;
 namespace DataAccess
 {
     public static class DatabaseInitializer
     {
         public static void SetInitializer()
         {
-
+            
             if (modStartUp.GetValoresHardkey()) {
                 if (modStartUp.GetVariablesConexion(true,modDeclares.keyMode.keyRegistry)) {
                     if (modDatabase.AbrirConexion(modDeclares.cnnDefault)) {

@@ -11,12 +11,12 @@
                 <div class="tab-pane active" id="tab_1">
                     <div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 <div ui-grid="gridOptions" ui-grid-selection class="despachoGrid"></div>
                             </div>
-                            <!--<div class="col-md-4">
-                                <div ui-grid="gridOptions" class="despachoGrid"></div>
-                            </div>-->
+                            <div class="col-md-2">
+                                <div ui-grid="gridOptionsMobile" class="despachoGrid"></div>
+                            </div>
                         </div>
                     </div>
                 </div><!-- /.tab-pane -->
@@ -28,10 +28,10 @@
                                 <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-times"></i></a>
                                 <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-pencil-square-o"></i></a>
                                 <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-refresh"></i></a>
-                                <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-step-backward"></i></a>
-                                <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-backward"></i></a>
-                                <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-step-forward"></i></a>
-                                <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-forward"></i></a>
+                                <a class="btn btn-social-icon btn-recepcion" ng-click="firstIncident()"><i class="fa fa-step-backward"></i></a>
+                                <a class="btn btn-social-icon btn-recepcion" ng-click="beforeIncident()"><i class="fa fa-backward"></i></a>
+                                <a class="btn btn-social-icon btn-recepcion" ng-click="nextIncident()"><i class="fa fa-step-forward"></i></a>
+                                <a class="btn btn-social-icon btn-recepcion" ng-click="lastIncident()"><i class="fa fa-forward"></i></a>
                                 <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-users"></i></a>
                                 <a class="btn btn-social-icon btn-recepcion"><i class="fa fa-print"></i></a>
                             </div>
@@ -50,21 +50,21 @@
                                     <input class="form-control input-sm" type="text" placeholder="Nro. de incidente" ng-model="incident.NroIncidente" />
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Telefono" />
+                                    <input class="form-control input-sm" type="text" placeholder="Telefono"  />
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Cliente" />
+                                    <input class="form-control input-sm" type="text" placeholder="Cliente" ng-model="incident.Cliente" />
                                 </div>
                                 <div class="col-md-2">
                                     <input class="form-control input-sm" type="text" placeholder="Nro. Afiliado" />
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Aviso" />
+                                    <input class="form-control input-sm" type="text" placeholder="Aviso" ng-model="incident.Aviso" />
                                 </div>
                             </div>
                             <div class="row voffset2">
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Localidad" />
+                                    <input class="form-control input-sm" type="text" placeholder="Localidad" ng-model="incident.Localidad" />
                                 </div>
                                 <div class="col-md-5">
                                     <input class="form-control input-sm" type="text" placeholder="Descripcion Localidad" />
@@ -95,18 +95,18 @@
                                     <input class="form-control input-sm" type="text" placeholder="Entre calle 2" />
                                 </div>
                                 <div class="col-md-5">
-                                    <input class="form-control input-sm" type="text" placeholder="Referencias" />
+                                    <input class="form-control input-sm" type="text" placeholder="Referencias" ng-model="incident.dmReferencia" />
                                 </div>
                             </div>
                             <div class="row voffset2">
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Sexo" />
+                                    <input class="form-control input-sm" type="text" placeholder="Sexo" ng-model="incident.Sexo" />
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control input-sm" type="text" placeholder="Edad" />
+                                    <input class="form-control input-sm" type="text" placeholder="Edad" ng-model="incident.Edad" />
                                 </div>
                                 <div class="col-md-5">
-                                    <input class="form-control input-sm" type="text" placeholder="Motivo de llamada - Sintomas" />
+                                    <input class="form-control input-sm" type="text" placeholder="Motivo de llamada - Sintomas" ng-model="incident.Sintomas" />
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control input-sm">
@@ -117,7 +117,7 @@
 
                             <div class="row voffset2">
                                 <div class="col-md-6">
-                                    <input class="form-control input-sm" type="text" placeholder="Paciente" />
+                                    <input class="form-control input-sm" type="text" placeholder="Paciente" ng-model="incident.Paciente" />
                                 </div>
                                 <div class="col-md-2">
                                     <select class="form-control input-sm">
@@ -150,7 +150,7 @@
                 <h3 class="box-title">Distribución de Servicios</h3>
             </div>
             <div class="box-body">
-                <canvas id="doughnut" class="chart chart-doughnut" data="data3" labels="labels3" height="55px"></canvas>
+                <canvas id="doughnut" class="chart chart-doughnut" data="dataChartQuantity" labels="labelsChartQuantity" height="55px"></canvas>
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
                 <h3 class="box-title">Tiempos Operativos</h3>
             </div>
             <div class="box-body">
-                <canvas id="line" class="chart chart-line" data="data2" labels="labels" legend="true" series="series" height="33px"></canvas>
+                <canvas id="line" class="chart chart-line" data="dataChartTimes" labels="labelsChartTimes" legend="true" height="33px"></canvas>
             </div>
         </div>
     </div>

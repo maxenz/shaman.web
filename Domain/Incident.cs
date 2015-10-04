@@ -70,5 +70,13 @@ namespace Domain
 
         public int ZonaGeograficaId { get; set; }
 
+        public string SexoEdad
+        {
+            get
+            {
+                return String.Format("{0}{1}", this.Sexo, this.Edad);
+            }
+        }
+
     }
 }

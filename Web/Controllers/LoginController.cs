@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Store.Controllers
+namespace Shaman.Controllers
 {
     public class LoginController : Controller
     {

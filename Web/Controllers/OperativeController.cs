@@ -12,15 +12,20 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace Store.Controllers
+namespace Shaman.Controllers
 {
     public class OperativeController : ApiController
     {
         //
         // GET: /Operative/
-        public List<Incident> Get()
+        public OperativeContainerViewModel Get()
         {
-            return IncidentDal.GetAll();
+            OperativeContainerViewModel operativeViewModel = new OperativeContainerViewModel();
+            operativeViewModel.Incidents = IncidentDal.GetAll();
+            operativeViewModel.Mobiles = MobileDal.GetAll();
+            operativeViewModel.ChartQuantities = IncidentDal.GetChartCantidades(new DateTime(2015, 8, 12));
+            operativeViewModel.ChartTimes = IncidentDal.GetChartTiempos(new DateTime(2015, 8, 12));
+            return operativeViewModel;
         }
 	}
 }

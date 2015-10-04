@@ -3,10 +3,13 @@
 	'ngRoute',
     'ui.grid',
     'ui.grid.selection',
-    'chart.js'
+    'chart.js',
+    'blockUI'
 ]).
 
-config(['$routeProvider', function ($routeProvider) {
+config(['$routeProvider','blockUIConfig', function ($routeProvider, blockUIConfig) {
+
+    blockUIConfig.message = 'Por favor, aguarde un instante...';
 
     $routeProvider.
 
