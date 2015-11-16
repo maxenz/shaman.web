@@ -13,7 +13,8 @@ namespace Shaman.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Client = ClientDal.GetById(8873).Name;
+            
+            //ViewBag.Client = ClientDal.GetById(8873).Name;
             return View();
         }
     }

@@ -13,7 +13,7 @@ namespace DataAccess
         public static Client GetById(int id)
         {
             var conClientes = new conClientes();
-            conClientes.Abrir("8873");
+            conClientes.Abrir(id.ToString());
             Client client = new Client
             {
                 Name = conClientes.RazonSocial,

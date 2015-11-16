@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using DataAccess.Repositories;
 
 namespace Shaman.Controllers
 {
@@ -10,9 +13,23 @@ namespace Shaman.Controllers
     {
         //
         // GET: /Login/
-        public ActionResult Index()
+        [HttpPost]
+        public HttpResponseMessage Authenticate()
         {
-            return View();
+            string user = Request.Form["user"];
+            string password = Request.Form["password"];
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            if (UserDal.Login(user, password) > 0)
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+            }
+
         }
+
+
 	}
 }

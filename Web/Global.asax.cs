@@ -11,10 +11,14 @@ using DataAccess;
 
 namespace Shaman
 {
+
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
+            string l4net = Server.MapPath("~/log4net.config");
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(l4net));
+
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

@@ -18,13 +18,13 @@
     <link href="~/Content/AdminLTE.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skin -->
     <link href="~/Content/skins/skin-green-light.min.css" rel="stylesheet" type="text/css" />
-    <!-- UI Angular Grid -->
-    <link href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css" rel="stylesheet" type="text/css" />
 
     <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/angular-chart.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/loading-bar.css" rel="stylesheet" />
     <link href="~/Content/angular-block-ui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/ngwidgets/styles/ngx.base.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/ngwidgets/styles/ngx.bootstrap.css" />
     <link rel="shortcut icon" href="favicon.ico" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,11 +52,11 @@
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" ng-show="$root.globals.currentUser">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
+                <div class="navbar-custom-menu" ng-show="$root.globals.currentUser">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <li class="dropdown messages-menu">
@@ -200,10 +200,10 @@
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
+        <aside class="main-sidebar" ng-show="$root.globals.currentUser">
 
             <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
+            <section class="sidebar" >
 
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
@@ -217,16 +217,6 @@
                     </div>
                 </div>
 
-                <!-- search form (Optional) -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search..." />
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
                     <li class="header">SECCIONES</li>
@@ -336,25 +326,19 @@
     <script src="~/Scripts/lteApp.min.js" type="text/javascript"></script>
     <script src="~/Scripts/fastclick/fastclick.min.js" type="text/javascript"></script>
     <script src="~/Scripts/chartjs/Chart.min.js" type="text/javascript"></script>
+
     <!-- Angular JS -->
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-touch.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/angular-route.js"></script>
-    <script src="~/Scripts/angular-grid-double-click.js"></script>
+    <script src="~/Scripts/angular-cookies.js"></script>
     <script src="~/Scripts/chartjs/angular-chart.min.js" type="text/javascript"></script>
     <script src="~/Scripts/angular-block-ui.min.js" type="text/javascript"></script>
-    <!-- Ui-Angular Grid -->
-    <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js" type="text/javascript"></script>
-    <!-- Angular Js APP -->
-    <script src="~/app/app.js" type="text/javascript"></script>
-    <script src="~/app/services/dispatchService.js" type="text/javascript"></script>
-    <script src="~/app/services/operativeService.js" type="text/javascript"></script>
-    <script src="~/app/services/mobilesService.js" type="text/javascript"></script>
-    <script src="~/app/controllers/home.js" type="text/javascript"></script>
-    <script src="~/app/controllers/operativePanel.js" type="text/javascript"></script>
-    <script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script>
         var map;
+        var markers = [];
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
@@ -362,6 +346,29 @@
             });
         }
     </script>
+
+    <!-- Angular Js APP -->
+    <script src="~/app/app.js" type="text/javascript"></script>
+    <script src="~/app/services/dispatchService.js" type="text/javascript"></script>
+    <script src="~/app/services/operativeService.js" type="text/javascript"></script>
+    <script src="~/app/services/mobilesService.js" type="text/javascript"></script>
+    <script src="~/app/services/authentication.js" type="text/javascript"></script>
+    <script src="~/app/services/map.service.js"></script>
+    <script src="~/app/controllers/login.js" type="text/javascript"></script>
+    <script src="~/app/controllers/home.js" type="text/javascript"></script>
+    <script src="~/app/controllers/operativePanel.js" type="text/javascript"></script>
+    <script src="~/app/controllers/datatable.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxcore.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxdata.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxinput.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxbuttons.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxscrollbar.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxlistbox.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxmenu.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxdropdownlist.js"></script>
+    <script type="text/javascript" src="~/Scripts/ngwidgets/ngxgridview.js"></script>
+    <script type="text/javascript" src="~/Scripts/ng-map.min.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?callback=initMap">
     </script>
