@@ -10,8 +10,8 @@ namespace DataAccess
     {
         public static void SetInitializer()
         {
-            try
-            {
+            //try
+            //{
                 var startup = new StartUp();
 
                 if (startup.GetValoresHardkey())
@@ -29,12 +29,12 @@ namespace DataAccess
                         }
                     }
                 } 
-            }
-            catch (Exception ex)
-            {
-                LogShaman sarasa = new LogShaman();
-                sarasa.SetLog(ex.ToString());
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogShaman sarasa = new LogShaman();
+            //    sarasa.SetLog(ex.ToString());
+            //}
          
         }
     }

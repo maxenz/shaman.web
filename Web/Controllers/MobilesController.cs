@@ -15,8 +15,7 @@ namespace Shaman.Controllers
         [System.Web.Mvc.HttpGet]
         public JsonResult GetMobiles()
         {
-            return Json(new Mobile(), JsonRequestBehavior.AllowGet);
-            //return Json(MobileDal.GetAll(), JsonRequestBehavior.AllowGet);
+            return Json(MobileDal.GetAll(), JsonRequestBehavior.AllowGet);
         }
     }
 }
