@@ -10,12 +10,20 @@ using System.Web.Mvc;
 
 namespace Shaman.Controllers
 {
-    public class MobilesController : Controller
+    public class MobilesController : BaseApiController
     {
-        [System.Web.Mvc.HttpGet]
-        public JsonResult GetMobiles()
+
+        public IHttpActionResult Get()
         {
-            return Json(MobileDal.GetAll(), JsonRequestBehavior.AllowGet);
+            try
+            {
+                return Ok(MobileDal.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
     }
 }
