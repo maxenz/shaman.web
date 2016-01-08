@@ -1758,6 +1758,7 @@
     <Compile Include="BaseApiController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidentsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MobilesController.cs" />
     <Compile Include="Controllers\OperativeController.cs" />
