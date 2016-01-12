@@ -47,6 +47,7 @@
     <Compile Include="ChartQuantity.cs" />
     <Compile Include="ChartTimes.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ClientMember.cs" />
     <Compile Include="Gadget.cs" />
     <Compile Include="GadgetOrder.cs" />
     <Compile Include="Incident.cs" />

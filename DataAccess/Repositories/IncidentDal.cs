@@ -12,9 +12,20 @@ namespace DataAccess.Repositories
 {
     public static class IncidentDal
     {
+
+        static conIncidentes conIncidentes;
+        static conClientesIntegrantes conClientesIntegrantes;
+
+        static IncidentDal()
+        {
+
+            conIncidentes = new conIncidentes();
+            conClientesIntegrantes = new conClientesIntegrantes();
+        }
+
+
         public static List<Incident> GetAll()
         {
-            conIncidentes conIncidentes = new conIncidentes();
             DataTable operativa = conIncidentes.GetOperativa();
             return operativa.DataTableToList<Incident>();
         }
@@ -43,31 +54,42 @@ namespace DataAccess.Repositories
 
         public static Incident GetNextIncident(string id)
         {
-            conIncidentes conIncidentes = new conIncidentes();
             long incidentId = conIncidentes.MoveNext(new DateTime(2015, 08, 12), Convert.ToInt64(id));
             return Get(incidentId.ToString());
         }
 
         public static Incident GetPreviousIncident(string id)
         {
-            conIncidentes conIncidentes = new conIncidentes();
             long incidentId = conIncidentes.MovePrevious(new DateTime(2015, 08, 12), Convert.ToInt64(id));
             return Get(incidentId.ToString());
         }
 
         public static Incident GetFirstIncident(string id)
         {
-            conIncidentes conIncidentes = new conIncidentes();
-            long incidentId = conIncidentes.MoveFirst(new DateTime(2015,08,12));
+            long incidentId = conIncidentes.MoveFirst(new DateTime(2015, 08, 12));
             return Get(incidentId.ToString());
         }
 
         public static Incident GetLastIncident(string id)
         {
-            conIncidentes conIncidentes = new conIncidentes();
             long incidentId = conIncidentes.MoveLast(new DateTime(2015, 08, 12));
             Incident inc = Get(incidentId.ToString());
             return inc;
+
+        }
+
+        public static Incident GetByPhone(string phone)
+        {
+            long incidentId = conIncidentes.GetByPhone(phone);
+
+            if (incidentId > 0)
+            {
+                conIncidentes.Abrir(Convert.ToString(incidentId));
+                return new Incident(conIncidentes);
+            }
+
+            return null;
+
 
         }
     }
