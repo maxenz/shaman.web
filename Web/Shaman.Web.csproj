@@ -1762,6 +1762,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MobilesController.cs" />
     <Compile Include="Controllers\OperativeController.cs" />
+    <Compile Include="Controllers\OperativeGradesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

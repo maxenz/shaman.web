@@ -48,6 +48,7 @@
     <Compile Include="Repositories\IncidentDal.cs" />
     <Compile Include="Repositories\MobileDal.cs" />
     <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="Repositories\OperativeGradeDal.cs" />
     <Compile Include="Repositories\UserDal.cs" />
   </ItemGroup>
   <ItemGroup>

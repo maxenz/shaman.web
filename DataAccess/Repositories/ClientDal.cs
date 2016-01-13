@@ -18,6 +18,7 @@ namespace DataAccess
         {
             conClientes = new conClientes();
             conClientesIntegrantes = new conClientesIntegrantes();
+            
         }
     
         public static Client GetById(int id)
