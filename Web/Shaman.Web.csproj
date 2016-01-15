@@ -1757,6 +1757,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BaseApiController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncidentsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

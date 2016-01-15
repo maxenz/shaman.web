@@ -1,10 +1,12 @@
 ﻿using Domain;
+using Domain.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShamanExpressDLL;
+using System.Data;
 
 namespace DataAccess
 {
@@ -13,11 +15,13 @@ namespace DataAccess
 
         static conClientes conClientes;
         static conClientesIntegrantes conClientesIntegrantes;
+        static conPlanes conPlanes;
 
             static ClientDal()
         {
             conClientes = new conClientes();
             conClientesIntegrantes = new conClientesIntegrantes();
+            conPlanes = new conPlanes();
             
         }
     
@@ -43,6 +47,12 @@ namespace DataAccess
             }
 
             return null;
+        }
+
+        public static List<Plan> GetAllPlansByClient(long clientId)
+        {
+            DataTable plans = conPlanes.GetAll(clientId);
+            return plans.DataTableToList<Plan>();
         }
 
     }
