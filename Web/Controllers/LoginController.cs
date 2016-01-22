@@ -18,7 +18,6 @@ namespace Shaman.Controllers
         {
             string user = Request.Form["user"];
             string password = Request.Form["password"];
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
             if (UserDal.Login(user, password) > 0)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.OK);

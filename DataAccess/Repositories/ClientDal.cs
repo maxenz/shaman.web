@@ -25,16 +25,10 @@ namespace DataAccess
             
         }
     
-        public static Client GetById(int id)
+        public static Client GetById(long id)
         {
             conClientes.Abrir(id.ToString());
-            Client client = new Client
-            {
-                Name = conClientes.RazonSocial,
-                LastName = conClientes.CodigoPostal
-            };
-
-            return client;
+            return new Client(conClientes);
         }
 
         public static ClientMember GetByPhone(string phone)
@@ -53,6 +47,37 @@ namespace DataAccess
         {
             DataTable plans = conPlanes.GetAll(clientId);
             return plans.DataTableToList<Plan>();
+        }
+
+        public static Client GetIdByAbreviaturaId(string clientDescription)
+        {
+            Client client = null;
+            long id = conClientes.GetIDByAbreviaturaId(clientDescription, true);
+            if (id != 0 )
+            {
+                client = GetById(id);
+                client.EstadoMorosidad = conClientes.GetEstadoMorosidad(id);
+                client.Id = id;
+            }
+     
+            return client;
+            
+        }
+
+        public static ClientMember GetIdByNroAfiliado(string clientAbreviaturaId, string affiliateNumber)
+        {
+            long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
+            ClientMember clientMember = null;
+            long id = conClientesIntegrantes.GetIDByNroAfiliado(clientId, affiliateNumber);
+
+            if (id != 0)
+            {
+                conClientesIntegrantes.Abrir(Convert.ToString(id));
+                return new ClientMember(conClientesIntegrantes);
+            }
+
+            return clientMember;
+            
         }
 
     }
