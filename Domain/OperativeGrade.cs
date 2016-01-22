@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShamanExpressDLL;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
-    public class OperativeGrade : BaseRegister
+
+    public class OperativeGrade 
     {
 
         public decimal Orden { get; set; }
@@ -18,15 +20,12 @@ namespace Domain
 
         public string Descripcion { get; set; }
 
+        public long Id { get; set; }
         public OperativeGrade() { }
 
         public OperativeGrade(conGradosOperativos conGradosOperativos)
         {
-
             this.Id = conGradosOperativos.ID;
-            this.RegFechaHora = conGradosOperativos.regFechaHora;
-            this.RegTerminalId = conGradosOperativos.regTerminalId;
-            this.RegUsuarioId = conGradosOperativos.regUsuarioId;
             this.Orden = conGradosOperativos.Orden;
             this.ColorHexa = conGradosOperativos.ColorHexa;
             this.AbreviaturaId = conGradosOperativos.AbreviaturaId;
