@@ -18,5 +18,12 @@ namespace DataAccess.Repositories
             DataTable mobiles = conMovilesActuales.GetMovilesOperativos();
             return mobiles.DataTableToList<Mobile>();
         }
+
+        public static List<Suggestion> GetSugerencias(int tipoMovilId, long gradoOperativoId, long localidadId)
+        {
+            conMovilesActuales conMovilesActuales = new conMovilesActuales();
+            DataTable sugerencias = conMovilesActuales.GetDTSugerenciaDespacho(tipoMovilId, gradoOperativoId, localidadId);
+            return sugerencias.DataTableToList<Suggestion>();
+        }
     }
 }
