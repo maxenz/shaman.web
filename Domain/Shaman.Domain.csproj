@@ -69,6 +69,10 @@
     <Compile Include="ClientMember.cs" />
     <Compile Include="Gadget.cs" />
     <Compile Include="GadgetOrder.cs" />
+    <Compile Include="GeographicZone.cs" />
+    <Compile Include="Locality.cs" />
+    <Compile Include="Partido.cs" />
+    <Compile Include="Province.cs" />
     <Compile Include="Suggestion.cs" />
     <Compile Include="TravelIncident.cs" />
     <Compile Include="Incident.cs" />

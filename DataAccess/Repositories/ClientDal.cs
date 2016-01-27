@@ -49,10 +49,10 @@ namespace DataAccess
             return plans.DataTableToList<Plan>();
         }
 
-        public static Client GetIdByAbreviaturaId(string clientDescription)
+        public static Client GetIdByAbreviaturaId(string clientAbreviaturaId)
         {
             Client client = null;
-            long id = conClientes.GetIDByAbreviaturaId(clientDescription, true);
+            long id = conClientes.GetIDByAbreviaturaId(clientAbreviaturaId, true);
             if (id != 0 )
             {
                 client = GetById(id);
@@ -67,7 +67,6 @@ namespace DataAccess
         public static ClientMember GetIdByNroAfiliado(string clientAbreviaturaId, string affiliateNumber)
         {
             long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
-            ClientMember clientMember = null;
             long id = conClientesIntegrantes.GetIDByNroAfiliado(clientId, affiliateNumber);
 
             if (id != 0)
@@ -76,7 +75,7 @@ namespace DataAccess
                 return new ClientMember(conClientesIntegrantes);
             }
 
-            return clientMember;
+            return null;
             
         }
 
