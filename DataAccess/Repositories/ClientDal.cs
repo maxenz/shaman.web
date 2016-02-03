@@ -79,5 +79,15 @@ namespace DataAccess
             
         }
 
+        public static List<ClientMember> GetClientMembersByClient(string clientAbreviaturaId)
+        {
+            long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
+            DataTable dtClientMembers = conClientesIntegrantes.GetQueryBaseByCliente(clientId);
+
+            return dtClientMembers.DataTableToList<ClientMember>();
+            
+
+        }
+
     }
 }

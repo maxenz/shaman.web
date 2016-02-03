@@ -10,6 +10,8 @@ namespace Shaman.Controllers
 {
     public class LocalitiesController : BaseApiController
     {
+        [HttpGet]
+        [HttpOptions]
         public IHttpActionResult GetLocalityByAbreviaturaId(string locAbreviaturaId)
         {
             try

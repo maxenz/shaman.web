@@ -1762,7 +1762,6 @@
     <Compile Include="Controllers\LocalitiesController.cs" />
     <Compile Include="Controllers\TravelIncidentsController.cs" />
     <Compile Include="Controllers\IncidentsController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MobilesController.cs" />
     <Compile Include="Controllers\OperativeController.cs" />
     <Compile Include="Controllers\OperativeGradesController.cs" />

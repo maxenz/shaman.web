@@ -25,6 +25,8 @@ namespace Shaman.Controllers
 
         }
 
+        [HttpGet]
+        [HttpOptions]
         public IHttpActionResult GetByPhone(string phone)
         {
             try
@@ -48,5 +50,7 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
         }
+
+
     }
 }

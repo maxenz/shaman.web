@@ -16,11 +16,29 @@ namespace Domain
 
         public string Apellido { get; set; }
 
+        public string TipoIntegrante { get; set; }
+
+        public string Cliente { get; set; }
+
+        public string NroAfiliado { get; set; }
+
+        public long Documento { get; set; }
+
+        public ClientMember() { }
+
         public ClientMember(conClientesIntegrantes conClientesIntegrantes )
         {
             this.Id = conClientesIntegrantes.ID;
             this.Nombre = conClientesIntegrantes.Nombre;
             this.Apellido = conClientesIntegrantes.Apellido;
+            this.TipoIntegrante = conClientesIntegrantes.TipoIntegrante;
+            this.NroAfiliado = conClientesIntegrantes.NroAfiliado;
+            this.Documento = conClientesIntegrantes.NroDocumento;
+            if (conClientesIntegrantes.ClienteId != null)
+            {
+                this.Cliente = conClientesIntegrantes.ClienteId.AbreviaturaId;
+            }
+
         }
     }
 }
