@@ -62,16 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs" />
     <Compile Include="ChartQuantity.cs" />
     <Compile Include="ChartTimes.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientMember.cs" />
-    <Compile Include="Gadget.cs" />
-    <Compile Include="GadgetOrder.cs" />
+    <Compile Include="Domicile.cs" />
     <Compile Include="GeographicZone.cs" />
+    <Compile Include="IvaSituations.cs" />
     <Compile Include="Locality.cs" />
     <Compile Include="Partido.cs" />
+    <Compile Include="PatientInfo.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="Suggestion.cs" />
     <Compile Include="TravelIncident.cs" />
@@ -79,10 +79,8 @@
     <Compile Include="BaseRegister.cs" />
     <Compile Include="Mobile.cs" />
     <Compile Include="OperativeGrade.cs" />
-    <Compile Include="Order.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="Utils\DataTableExtension.cs" />
     <Compile Include="Utils\JsonHelper.cs" />
   </ItemGroup>

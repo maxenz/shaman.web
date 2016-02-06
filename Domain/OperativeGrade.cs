@@ -31,5 +31,14 @@ namespace Domain
             this.AbreviaturaId = conGradosOperativos.AbreviaturaId;
             this.Descripcion = conGradosOperativos.Descripcion;
         }
+
+        public OperativeGrade(typGradosOperativos typGradosOperativos)
+        {
+            this.Id = typGradosOperativos.ID;
+            this.Orden = typGradosOperativos.Orden;
+            this.ColorHexa = typGradosOperativos.ColorHexa;
+            this.AbreviaturaId = typGradosOperativos.AbreviaturaId;
+            this.Descripcion = typGradosOperativos.Descripcion;
+        }
     }
 }

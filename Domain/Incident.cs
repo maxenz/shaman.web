@@ -27,11 +27,11 @@ namespace Domain
 
         public string Sintomas { get; set; }
 
-        public string Domicilio { get; set; }
+        public string DomicilioDescripcion { get; set; }
+
+        public Domicile Domicilio { get; set; }
 
         public string ZonaColor { get; set; }
-
-        public string Localidad { get; set; }
 
         public string LocalidadDescripcion { get; set; }
 
@@ -49,8 +49,6 @@ namespace Domain
 
         public string Paciente { get; set; }
 
-        public string dmReferencia { get; set; }
-
         public string MovilPreasignado { get; set; }
 
         public string Sanatorio { get; set; }
@@ -67,12 +65,6 @@ namespace Domain
 
         public string Aviso { get; set; }
 
-        public decimal dmLatitud { get; set; }
-
-        public decimal dmLongitud { get; set; }
-
-        public string GradoOperativoId { get; set; }
-
         public int ZonaGeograficaId { get; set; }
 
         public DateTime FechaIncidente { get; set; }
@@ -83,27 +75,11 @@ namespace Domain
 
         public string Partido { get; set; }
 
-        public string Calle { get; set; }
-
-        public long Altura { get; set; }
-
-        public string Piso { get; set; }
-
-        public string Departamento { get; set; }
-
-        public string EntreCalle1 { get; set; }
-
-        public string EntreCalle2 { get; set; }
-
         public decimal Copago { get; set; }
 
-        public string SexoEdad
-        {
-            get
-            {
-                return String.Format("{0}{1}", this.Sexo, this.Edad);
-            }
-        }
+        public Locality Localidad { get; set; }
+
+        public OperativeGrade GradoOperativo { get; set; }
 
         #endregion
 
@@ -117,16 +93,13 @@ namespace Domain
             this.AbreviaturaId = objIncident.ID.ToString();
             this.Aviso = objIncident.Aviso;
             this.Cliente = objIncident.ClienteId.RazonSocial;
-            this.dmLatitud = objIncident.ClienteId.Domicilio.dmLatitud;
-            this.dmLongitud = objIncident.ClienteId.Domicilio.dmLongitud;
-            this.dmReferencia = objIncident.ClienteId.Domicilio.dmReferencia;
-            this.Domicilio = objIncident.ClienteId.Domicilio.Domicilio;
+            this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
             this.Edad = Convert.ToInt32(objIncident.Edad);
             this.GradoColor = objIncident.GradoOperativoId.ColorHexa;
-            this.GradoOperativoId = objIncident.GradoOperativoId.AbreviaturaId;
+            this.GradoOperativo = new OperativeGrade(objIncident.GradoOperativoId);
             this.horLlamada = objIncident.HorarioOperativo.horLlamada.ToShortTimeString();
             this.IncidenteId = objIncident.ID.ToString();
-            this.Localidad = objIncident.ClienteId.LocalidadId.AbreviaturaId;
+            this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
             this.NroIncidente = objIncident.NroIncidente;
             this.Paciente = objIncident.Paciente;
             this.Sexo = objIncident.Sexo;
@@ -134,16 +107,8 @@ namespace Domain
             this.FechaIncidente = objIncident.FecIncidente;
             this.Telefono = objIncident.Telefono;
             this.NroAfiliado = objIncident.NroAfiliado;
-            this.LocalidadDescripcion =  objIncident.ClienteId.LocalidadId.Descripcion;
-            this.Partido = objIncident.ClienteId.LocalidadId.PartidoId.Descripcion;
-            this.Calle = objIncident.ClienteId.Domicilio.dmCalle;
-            this.Altura = objIncident.ClienteId.Domicilio.dmAltura;
-            this.Piso = objIncident.ClienteId.Domicilio.dmPiso;
-            this.Departamento = objIncident.ClienteId.Domicilio.dmDepto;
-            this.EntreCalle1 = objIncident.ClienteId.Domicilio.dmEntreCalle1;
-            this.EntreCalle2 = objIncident.ClienteId.Domicilio.dmEntreCalle2;
             this.Copago = objIncident.CoPago;
-
+            
         }
 
         #endregion
