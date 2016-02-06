@@ -15,12 +15,13 @@ namespace DataAccess.Repositories
 
         static conIncidentes conIncidentes;
         static conClientesIntegrantes conClientesIntegrantes;
-
+        static conlckIncidentes conLckIncidentes;
         static IncidentDal()
         {
 
             conIncidentes = new conIncidentes();
             conClientesIntegrantes = new conClientesIntegrantes();
+            conLckIncidentes = new conlckIncidentes();
         }
 
 
@@ -52,10 +53,10 @@ namespace DataAccess.Repositories
             //return null;
         }
 
-        public static Incident GetNextIncident(string id)
+        public static string GetNewIncidentNumberToCreate()
         {
-            long incidentId = conIncidentes.MoveNext(new DateTime(2015, 08, 12), Convert.ToInt64(id));
-            return Get(incidentId.ToString());
+            return conLckIncidentes.getNewIncidente(DateTime.Now);
+
         }
 
         public static Incident GetPreviousIncident(string id)

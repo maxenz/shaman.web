@@ -81,6 +81,8 @@ namespace Domain
 
         public OperativeGrade GradoOperativo { get; set; }
 
+        public long SituacionIvaId { get; set; }
+
         #endregion
 
         #region Constructors
@@ -88,18 +90,14 @@ namespace Domain
         public Incident(){}
 
         public Incident(conIncidentes objIncident)
-        {
-            
+        {   
             this.AbreviaturaId = objIncident.ID.ToString();
             this.Aviso = objIncident.Aviso;
-            this.Cliente = objIncident.ClienteId.RazonSocial;
-            this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
             this.Edad = Convert.ToInt32(objIncident.Edad);
             this.GradoColor = objIncident.GradoOperativoId.ColorHexa;
             this.GradoOperativo = new OperativeGrade(objIncident.GradoOperativoId);
             this.horLlamada = objIncident.HorarioOperativo.horLlamada.ToShortTimeString();
             this.IncidenteId = objIncident.ID.ToString();
-            this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
             this.NroIncidente = objIncident.NroIncidente;
             this.Paciente = objIncident.Paciente;
             this.Sexo = objIncident.Sexo;
@@ -108,6 +106,14 @@ namespace Domain
             this.Telefono = objIncident.Telefono;
             this.NroAfiliado = objIncident.NroAfiliado;
             this.Copago = objIncident.CoPago;
+
+            if (objIncident.ClienteId != null)
+            {
+                this.SituacionIvaId = objIncident.ClienteId.SituacionIvaId.ID;
+                this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
+                this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
+                this.Cliente = objIncident.ClienteId.RazonSocial;
+            }
             
         }
 

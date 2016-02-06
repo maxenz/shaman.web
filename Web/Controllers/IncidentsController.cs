@@ -12,7 +12,10 @@ namespace Shaman.Controllers
 {
     public class IncidentsController : BaseApiController
     {
-        public IHttpActionResult Get()
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetAll()
         {
             try
             {
@@ -50,6 +53,24 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
         }
+
+
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetNewIncidentNumberToCreate()
+        {
+            try
+            {
+                return Ok(IncidentDal.GetNewIncidentNumberToCreate());
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
 
 
     }

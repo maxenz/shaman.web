@@ -40,6 +40,8 @@ namespace Domain
 
         public DateTime FecNacimiento { get; set; }
 
+        public long SituacionIvaId { get; set; }
+
         public ClientMember() { }
 
         public ClientMember(conClientesIntegrantes conClientesIntegrantes )
@@ -54,11 +56,13 @@ namespace Domain
             if (conClientesIntegrantes.ClienteId != null)
             {
                 this.AbreviaturaId = conClientesIntegrantes.ClienteId.AbreviaturaId;
+                this.SituacionIvaId = conClientesIntegrantes.ClienteId.SituacionIvaId.ID;
             }
-            
+
             this.Domicilio = new Domicile(conClientesIntegrantes.Domicilio);
             this.Localidad = new Locality(conClientesIntegrantes.LocalidadId);
             this.Sexo = conClientesIntegrantes.Sexo;
+            
             this.SetTelephoneData(conClientesIntegrantes);
             this.SetPatient();
             this.SetAge();

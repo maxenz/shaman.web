@@ -61,11 +61,11 @@ namespace Shaman.Controllers
             return Json(IncidentDal.Get(id), JsonRequestBehavior.AllowGet);
         }
 
-        [System.Web.Mvc.HttpGet]
-        public JsonResult GetNextIncident(string id)
-        {
-            return Json(IncidentDal.GetNextIncident(id), JsonRequestBehavior.AllowGet);
-        }
+        //[System.Web.Mvc.HttpGet]
+        //public JsonResult GetNextIncident(string id)
+        //{
+        //    return Json(IncidentDal.GetNextIncident(id), JsonRequestBehavior.AllowGet);
+        //}
 
         [System.Web.Mvc.HttpGet]
         public JsonResult GetPreviousIncident(string id)
