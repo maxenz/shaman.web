@@ -1761,6 +1761,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IvaController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
+    <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Controllers\TravelIncidentsController.cs" />
     <Compile Include="Controllers\IncidentsController.cs" />
     <Compile Include="Controllers\MobilesController.cs" />

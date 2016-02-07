@@ -74,6 +74,7 @@
     <Compile Include="PatientInfo.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="Suggestion.cs" />
+    <Compile Include="Symptom.cs" />
     <Compile Include="TravelIncident.cs" />
     <Compile Include="Incident.cs" />
     <Compile Include="BaseRegister.cs" />
