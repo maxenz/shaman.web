@@ -42,6 +42,8 @@ namespace Domain
 
         public long SituacionIvaId { get; set; }
 
+        public Client Cliente { get; set; }
+
         public ClientMember() { }
 
         public ClientMember(conClientesIntegrantes conClientesIntegrantes )
@@ -55,8 +57,7 @@ namespace Domain
             this.FecNacimiento = conClientesIntegrantes.FecNacimiento;
             if (conClientesIntegrantes.ClienteId != null)
             {
-                this.AbreviaturaId = conClientesIntegrantes.ClienteId.AbreviaturaId;
-                this.SituacionIvaId = conClientesIntegrantes.ClienteId.SituacionIvaId.ID;
+                this.Cliente = new Client(conClientesIntegrantes.ClienteId);
             }
 
             this.Domicilio = new Domicile(conClientesIntegrantes.Domicilio);

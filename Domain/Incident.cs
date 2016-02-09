@@ -19,8 +19,6 @@ namespace Domain
 
         public string AbreviaturaId { get; set; }
 
-        public string Cliente { get; set; }
-
         public string NroIncidente { get; set; }
 
         public bool flgReclamo { get; set; }
@@ -83,6 +81,10 @@ namespace Domain
 
         public long SituacionIvaId { get; set; }
 
+        public string PlanId { get; set; }
+
+        public Client Cliente { get; set; }
+
         #endregion
 
         #region Constructors
@@ -106,13 +108,15 @@ namespace Domain
             this.Telefono = objIncident.Telefono;
             this.NroAfiliado = objIncident.NroAfiliado;
             this.Copago = objIncident.CoPago;
+            this.PlanId = objIncident.PlanId;
+            
 
             if (objIncident.ClienteId != null)
             {
                 this.SituacionIvaId = objIncident.ClienteId.SituacionIvaId.ID;
                 this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
                 this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
-                this.Cliente = objIncident.ClienteId.RazonSocial;
+                this.Cliente = new Client(objIncident.ClienteId);
             }
             
         }

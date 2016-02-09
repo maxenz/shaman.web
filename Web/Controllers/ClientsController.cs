@@ -12,11 +12,11 @@ namespace Shaman.Controllers
     {
         [HttpGet]
         [HttpOptions]
-        public IHttpActionResult GetPlans(long clientId)
+        public IHttpActionResult GetPlans(string client)
         {
             try
             {
-                return Ok(ClientDal.GetAllPlansByClient(clientId));
+                return Ok(ClientDal.GetAllPlansByClient(client));
             }
             catch (Exception ex)
             {

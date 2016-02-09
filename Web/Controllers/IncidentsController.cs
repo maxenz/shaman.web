@@ -30,6 +30,23 @@ namespace Shaman.Controllers
 
         [HttpGet]
         [HttpOptions]
+        public IHttpActionResult GetById(string id)
+        {
+            try
+            {
+                return Ok(IncidentDal.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+        }
+
+
+
+        [HttpGet]
+        [HttpOptions]
         public IHttpActionResult GetByPhone(string phone)
         {
             try

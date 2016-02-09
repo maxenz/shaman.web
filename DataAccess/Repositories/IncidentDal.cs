@@ -91,7 +91,12 @@ namespace DataAccess.Repositories
 
             return null;
 
+        }
 
+        public static Incident GetById(string id)
+        {
+            conIncidentes.Abrir(id);
+            return new Incident(conIncidentes);
         }
     }
 }

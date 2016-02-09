@@ -43,9 +43,10 @@ namespace DataAccess
             return null;
         }
 
-        public static List<Plan> GetAllPlansByClient(long clientId)
+        public static List<Plan> GetAllPlansByClient(string client)
         {
-            DataTable plans = conPlanes.GetAll(clientId);
+            long id = conClientes.GetIDByAbreviaturaId(client);
+            DataTable plans = conPlanes.GetAll(id);
             return plans.DataTableToList<Plan>();
         }
 

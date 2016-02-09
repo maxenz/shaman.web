@@ -15,10 +15,10 @@ namespace DataAccess.Repositories
             conSituacionesIva = new conSituacionesIva();            
         }
 
-        public static List<IvaSituations> GetAllSituations()
+        public static List<IvaSituation> GetAllSituations()
         {
             DataTable ivaSituations = conSituacionesIva.GetAll();
-            return ivaSituations.DataTableToList<IvaSituations>();
+            return ivaSituations.DataTableToList<IvaSituation>();
         }
     }
 }
