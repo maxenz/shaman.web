@@ -68,6 +68,7 @@
     <Compile Include="ClientMember.cs" />
     <Compile Include="Domicile.cs" />
     <Compile Include="GeographicZone.cs" />
+    <Compile Include="IncidentGridDTO.cs" />
     <Compile Include="IvaSituation.cs" />
     <Compile Include="Locality.cs" />
     <Compile Include="Partido.cs" />

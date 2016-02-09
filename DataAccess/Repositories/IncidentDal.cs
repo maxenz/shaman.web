@@ -24,10 +24,10 @@ namespace DataAccess.Repositories
             conLckIncidentes = new conlckIncidentes();
         }
 
-        public static List<Incident> GetAll()
+        public static List<IncidentGridDTO> GetAll()
         {
             DataTable operativa = conIncidentes.GetOperativa();
-            return operativa.DataTableToList<Incident>();
+            return operativa.DataTableToList<IncidentGridDTO>();
         }
 
         public static List<ChartQuantity> GetChartCantidades(DateTime fecha)
