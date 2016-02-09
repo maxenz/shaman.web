@@ -43,8 +43,6 @@ namespace Shaman.Controllers
 
         }
 
-
-
         [HttpGet]
         [HttpOptions]
         public IHttpActionResult GetByPhone(string phone)
@@ -71,8 +69,6 @@ namespace Shaman.Controllers
             }
         }
 
-
-
         [HttpGet]
         [HttpOptions]
         public IHttpActionResult GetNewIncidentNumberToCreate()
@@ -88,7 +84,65 @@ namespace Shaman.Controllers
             }
         }
 
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetFirst()
+        {
+            try
+            {
+                return Ok(IncidentDal.GetFirstIncident());
 
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetLast()
+        {
+            try
+            {
+                return Ok(IncidentDal.GetLastIncident());
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetPrevious(string id)
+        {
+            try
+            {
+                return Ok(IncidentDal.GetPreviousIncident(id));
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetNext(string id)
+        {
+            try
+            {
+                return Ok(IncidentDal.GetNextIncident(id));
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
     }
 }

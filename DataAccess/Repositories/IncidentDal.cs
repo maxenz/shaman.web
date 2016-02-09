@@ -24,7 +24,6 @@ namespace DataAccess.Repositories
             conLckIncidentes = new conlckIncidentes();
         }
 
-
         public static List<Incident> GetAll()
         {
             DataTable operativa = conIncidentes.GetOperativa();
@@ -43,16 +42,6 @@ namespace DataAccess.Repositories
             return chart.DataTableToList<ChartTimes>();
         }
 
-        public static Incident Get(string id)
-        {
-            return GetAll().Find(x => x.IncidenteId.ToString().Equals(id));
-            //conIncidentes conIncidentes = new conIncidentes();
-            //if (conIncidentes.Abrir(id))
-            //    return new Incident(conIncidentes);
-
-            //return null;
-        }
-
         public static string GetNewIncidentNumberToCreate()
         {
             return conLckIncidentes.getNewIncidente(DateTime.Now);
@@ -61,22 +50,26 @@ namespace DataAccess.Repositories
 
         public static Incident GetPreviousIncident(string id)
         {
-            long incidentId = conIncidentes.MovePrevious(new DateTime(2015, 08, 12), Convert.ToInt64(id));
-            return Get(incidentId.ToString());
+            long incId = conIncidentes.MovePrevious(DateTime.Now, Convert.ToInt64(id));
+            return GetById(Convert.ToString(incId));
         }
 
-        public static Incident GetFirstIncident(string id)
+        public static Incident GetNextIncident(string id)
         {
-            long incidentId = conIncidentes.MoveFirst(new DateTime(2015, 08, 12));
-            return Get(incidentId.ToString());
+            long incId = conIncidentes.MoveNext(DateTime.Now, Convert.ToInt64(id));
+            return GetById(Convert.ToString(incId));
         }
 
-        public static Incident GetLastIncident(string id)
+        public static Incident GetFirstIncident()
         {
-            long incidentId = conIncidentes.MoveLast(new DateTime(2015, 08, 12));
-            Incident inc = Get(incidentId.ToString());
-            return inc;
+            long id = conIncidentes.MoveFirst(DateTime.Now);
+            return GetById(Convert.ToString(id));
+        }
 
+        public static Incident GetLastIncident()
+        {
+            long id = conIncidentes.MoveLast(DateTime.Now);
+            return GetById(Convert.ToString(id));
         }
 
         public static Incident GetByPhone(string phone)

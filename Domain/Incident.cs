@@ -11,7 +11,7 @@ namespace Domain
     {
         #region Properties
 
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         public string IncidenteId { get; set; }
 
@@ -109,6 +109,7 @@ namespace Domain
             this.NroAfiliado = objIncident.NroAfiliado;
             this.Copago = objIncident.CoPago;
             this.PlanId = objIncident.PlanId;
+            this.ID = objIncident.ID;
             
 
             if (objIncident.ClienteId != null)
