@@ -60,7 +60,7 @@ namespace Domain
 
         public int ZonaGeograficaId { get; set; }
 
-        public DateTime FechaIncidente { get; set; }
+        public DateTime FecIncidente { get; set; }
 
         public string Telefono { get; set; }
 
