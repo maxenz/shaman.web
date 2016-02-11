@@ -17,17 +17,29 @@ namespace Shaman
             // Web API routes
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.MapHttpAttributeRoutes();
+
             config.Routes.MapHttpRoute(
-                name: "ActionApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+    name: "ActionApi",
+    routeTemplate: "api/{controller}/{action}/{id}",
+    defaults: new { id = RouteParameter.Optional }
+);
+
+            config.Routes.MapHttpRoute(
+name: "WebApi",
+routeTemplate: "api/{controller}/{id}",
+defaults: new { id = RouteParameter.Optional }
+);
+
+
 
             config.Routes.MapHttpRoute("DefaultApiWithId", "api/{controller}/{id}", new { id = RouteParameter.Optional }, new { id = @"\d+" });
             config.Routes.MapHttpRoute("DefaultApiWithAction", "api/{controller}/{action}");
             config.Routes.MapHttpRoute("DefaultApiGet", "api/{controller}", new { action = "Get" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
             config.Routes.MapHttpRoute("DefaultApiPost", "api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
+
+
+        
 
         }
     }

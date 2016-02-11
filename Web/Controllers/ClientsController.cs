@@ -10,11 +10,13 @@ namespace Shaman.Controllers
 {
     public class ClientsController : BaseApiController
     {
-        public IHttpActionResult GetPlans(long clientId)
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetPlans(string client)
         {
             try
             {
-                return Ok(ClientDal.GetAllPlansByClient(clientId));
+                return Ok(ClientDal.GetAllPlansByClient(client));
             }
             catch (Exception ex)
             {
@@ -22,6 +24,8 @@ namespace Shaman.Controllers
             }
         }
 
+        [HttpGet]
+        [HttpOptions]
         public IHttpActionResult GetClientWithValidation(string client)
         {
             try
@@ -34,6 +38,8 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        [HttpOptions]
 
         public IHttpActionResult GetAffiliateWithValidation(string clientAbreviaturaId, string affiliateNumber)
         {
@@ -47,5 +53,20 @@ namespace Shaman.Controllers
             }
 
         }
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetMembersByClient(string client)
+        {
+            try
+            {
+                return Ok(ClientDal.GetClientMembersByClient(client));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+        }
+
     }
 }

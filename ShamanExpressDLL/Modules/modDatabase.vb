@@ -28,7 +28,7 @@ Public Module modDatabase
         'cnnCatalog = "MutualPrd"
 
         If pSql Then
-            vCnnStr = "Data Source=" & cnnDataSource & ";Initial Catalog=" & cnnCatalog & ";User Id=" & cnnUser & "; Password=" & cnnPassword & ";"
+            vCnnStr = "Data Source=" & cnnDataSource & ";Initial Catalog=" & cnnCatalog & ";User Id=" & cnnUser & "; Password=" & cnnPassword & ";MultipleActiveResultSets=true"
         Else
             vCnnStr = "Provider=sqloledb;Data Source=" & cnnDataSource & ";Initial Catalog=" & cnnCatalog & ";User Id=" & cnnUser & "; Password=" & cnnPassword & ";"
         End If

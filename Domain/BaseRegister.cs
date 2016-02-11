@@ -8,11 +8,10 @@ using System.Runtime.Serialization;
 
 namespace Domain
 {
-    [DataContract]
     public class BaseRegister
     {
-        public typUsuarios RegUsuarioId { get; set; }
-        public typTerminales RegTerminalId { get; set; }
+        public long RegUsuarioId { get; set; }
+        public long RegTerminalId { get; set; }
         public DateTime RegFechaHora { get; set; }
         public long Id { get; set; }
     }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class User
+    public class Symptom : BaseRegister
     {
+
+        public string Descripcion { get; set; }
 
     }
 }

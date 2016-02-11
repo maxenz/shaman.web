@@ -13,7 +13,8 @@ namespace Shaman.Controllers
 {
     public class TravelIncidentsController : BaseApiController
     {
-
+        [HttpGet]
+        [HttpOptions]
         public IHttpActionResult GetDespachoPopupInformation(int id, int psel)
         {
             try

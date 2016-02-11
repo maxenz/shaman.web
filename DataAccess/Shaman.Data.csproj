@@ -63,7 +63,10 @@
   <ItemGroup>
     <Compile Include="Repositories\ClientDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IvaDal.cs" />
     <Compile Include="Repositories\LocalityDal.cs" />
+    <Compile Include="Repositories\GeneralFuntionsDal.cs" />
+    <Compile Include="Repositories\SymptomDal.cs" />
     <Compile Include="Repositories\TravelIncidentDal.cs" />
     <Compile Include="Repositories\IncidentDal.cs" />
     <Compile Include="Repositories\MobileDal.cs" />

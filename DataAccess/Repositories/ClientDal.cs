@@ -17,14 +17,14 @@ namespace DataAccess
         static conClientesIntegrantes conClientesIntegrantes;
         static conPlanes conPlanes;
 
-            static ClientDal()
+        static ClientDal()
         {
             conClientes = new conClientes();
             conClientesIntegrantes = new conClientesIntegrantes();
             conPlanes = new conPlanes();
-            
+
         }
-    
+
         public static Client GetById(long id)
         {
             conClientes.Abrir(id.ToString());
@@ -43,9 +43,10 @@ namespace DataAccess
             return null;
         }
 
-        public static List<Plan> GetAllPlansByClient(long clientId)
+        public static List<Plan> GetAllPlansByClient(string client)
         {
-            DataTable plans = conPlanes.GetAll(clientId);
+            long id = conClientes.GetIDByAbreviaturaId(client);
+            DataTable plans = conPlanes.GetAll(id);
             return plans.DataTableToList<Plan>();
         }
 
@@ -53,15 +54,27 @@ namespace DataAccess
         {
             Client client = null;
             long id = conClientes.GetIDByAbreviaturaId(clientAbreviaturaId, true);
-            if (id != 0 )
+            if (id != 0)
             {
                 client = GetById(id);
                 client.EstadoMorosidad = conClientes.GetEstadoMorosidad(id);
                 client.Id = id;
             }
-     
+
             return client;
-            
+
+        }
+
+        public static string GetEstadoMorosidad(long clienteId)
+        {
+            Client client = null;
+            //long id = conClientes.GetIDByAbreviaturaId(clienteId, true);
+            if (clienteId != 0)
+            {
+                return conClientes.GetEstadoMorosidad(clienteId);
+            }
+
+            return String.Empty;
         }
 
         public static ClientMember GetIdByNroAfiliado(string clientAbreviaturaId, string affiliateNumber)
@@ -76,7 +89,17 @@ namespace DataAccess
             }
 
             return null;
-            
+
+        }
+
+        public static List<ClientMember> GetClientMembersByClient(string clientAbreviaturaId)
+        {
+            long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
+            DataTable dtClientMembers = conClientesIntegrantes.GetQueryBaseByCliente(clientId);
+
+            return dtClientMembers.DataTableToList<ClientMember>();
+
+
         }
 
     }

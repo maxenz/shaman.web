@@ -1759,13 +1759,15 @@
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IvaController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
+    <Compile Include="Controllers\SymptomsController.cs" />
     <Compile Include="Controllers\TravelIncidentsController.cs" />
     <Compile Include="Controllers\IncidentsController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MobilesController.cs" />
     <Compile Include="Controllers\OperativeController.cs" />
     <Compile Include="Controllers\OperativeGradesController.cs" />
+    <Compile Include="Enums\TiempoCarga.cs" />
     <Compile Include="Enums\Clasificacion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

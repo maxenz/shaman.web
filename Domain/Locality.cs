@@ -32,5 +32,15 @@ namespace Domain
                  
         }
 
+        public Locality(typLocalidades localidad)
+        {
+            this.AbreviaturaId = localidad.AbreviaturaId;
+            this.Descripcion = localidad.Descripcion;
+            this.Partido = new Partido(localidad.PartidoId);
+            this.Province = new Province(localidad.ProvinciaId);
+            this.GeographicZone = new GeographicZone(localidad.ZonaGeograficaId);
+
+        }
+
     }
 }
