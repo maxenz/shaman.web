@@ -264,6 +264,27 @@ Public Class conClientesIntegrantes
         End Try
     End Function
 
+    Public Function GetAll() As DataTable
+
+        GetAll = Nothing
+
+        Try
+
+            Dim SQL As String
+
+            SQL = "SELECT * FROM viewIntegrantes ORDER BY [AbreviaturaId] DESC "
+
+            Dim cmdCli As New SqlCommand(SQL, cnnsNET(Me.myCnnName), cnnsTransNET(Me.myCnnName))
+            Dim dt As New DataTable
+            dt.Load(cmdCli.ExecuteReader)
+
+            GetAll = dt
+
+        Catch ex As Exception
+            HandleError(Me.GetType.Name, "GetAll", ex)
+        End Try
+    End Function
+
 #Region "InfoPaciente"
 
     Public Function SetInfoPaciente(ByVal pId As Int64, ByVal dt As DataTable) As Boolean

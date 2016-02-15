@@ -10,7 +10,9 @@ namespace Domain
         public string AbreviaturaId { get; set; }
         public bool Activo { get; set; }
         public string EstadoMorosidad { get; set; }
-
+        public string Rubro { get; set; }
+        public string Localidad { get; set; }
+        public string Domicilio { get; set; }
         public long Id { get; set; }
 
         public IvaSituation SituacionIvaId { get; set; }
@@ -24,6 +26,7 @@ namespace Domain
             this.Activo = Convert.ToBoolean(conClientes.Activo);
             this.Id = conClientes.ID;
             this.SituacionIvaId = new IvaSituation(conClientes.SituacionIvaId);
+
         }
 
         public Client(typClientes typClientes)

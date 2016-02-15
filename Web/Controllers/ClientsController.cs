@@ -53,6 +53,7 @@ namespace Shaman.Controllers
             }
 
         }
+
         [HttpGet]
         [HttpOptions]
         public IHttpActionResult GetMembersByClient(string client)
@@ -66,6 +67,35 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
 
+        }
+
+        [HttpGet]
+        [HttpOptions]
+        public IHttpActionResult GetAll()
+        {
+            try
+            {
+                return Ok(ClientDal.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+        }
+
+        [HttpGet]
+        [HttpOptions]
+
+        public IHttpActionResult GetAllClientMembers()
+        {
+            try
+            {
+                return Ok(ClientDal.GetAllClientMembers());
+            } catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
     }

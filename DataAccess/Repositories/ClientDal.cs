@@ -99,7 +99,18 @@ namespace DataAccess
 
             return dtClientMembers.DataTableToList<ClientMember>();
 
+        }
 
+        public static List<Client> GetAll()
+        {
+            DataTable dtClients = conClientes.GetAll();
+            return dtClients.DataTableToList<Client>();
+        }
+
+        public static List<ClientMember> GetAllClientMembers()
+        {
+            DataTable dtClientMembers = conClientesIntegrantes.GetAll();
+            return dtClientMembers.DataTableToList<ClientMember>();
         }
 
     }

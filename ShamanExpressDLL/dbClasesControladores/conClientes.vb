@@ -303,7 +303,7 @@ Public Class conClientes
         End Try
     End Function
 
-    Public Function GetForAsistente(pAcc As Integer, pPor As Double, pNewVal As Int64, pIdes As Date, pIHas As Date, pEdes As Date, pEhas As Date, pSit As Integer, pZon As Int64, _
+    Public Function GetForAsistente(pAcc As Integer, pPor As Double, pNewVal As Int64, pIdes As Date, pIHas As Date, pEdes As Date, pEhas As Date, pSit As Integer, pZon As Int64,
                                   pPai As Int64, pPrv As Int64, pRub As Int64, pPla As Int64, pCli As Int64) As DataTable
 
         GetForAsistente = Nothing
@@ -356,6 +356,27 @@ Public Class conClientes
 
         Catch ex As Exception
             HandleError(Me.GetType.Name, "GetForAsistente", ex)
+        End Try
+    End Function
+
+    Public Function GetAll() As DataTable
+
+        GetAll = Nothing
+
+        Try
+
+            Dim SQL As String
+
+            SQL = "SELECT * FROM viewClientes ORDER BY [AbreviaturaId] DESC "
+
+            Dim cmdCli As New SqlCommand(SQL, cnnsNET(Me.myCnnName), cnnsTransNET(Me.myCnnName))
+            Dim dt As New DataTable
+            dt.Load(cmdCli.ExecuteReader)
+
+            GetAll = dt
+
+        Catch ex As Exception
+            HandleError(Me.GetType.Name, "GetAll", ex)
         End Try
     End Function
 
