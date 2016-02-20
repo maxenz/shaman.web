@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,19 @@ namespace Shaman.ViewModels
         public string Floor { get; set; }
         public int Height { get; set; }
         public string Street { get; set; }
+
+        public Domicile ConvertViewModelToDomicile()
+        {
+            Domicile dom = new Domicile();
+            dom.BetweenStreet1 = this.BetweenFirstStreet;
+            dom.BetweenStreet2 = this.BetweenSecondStreet;
+            dom.Department = this.Department;
+            dom.Floor = this.Floor;
+            dom.Height = this.Height;
+            dom.Street = this.Street;
+
+            return dom;
+        }
 
         public string GetDomicileDescription()
         {

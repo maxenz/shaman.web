@@ -15,6 +15,8 @@ namespace DataAccess.Repositories
         static conIncidentes conIncidentes;
         static conClientesIntegrantes conClientesIntegrantes;
         static conlckIncidentes conLckIncidentes;
+        static conIncidentesDomicilios conIncidentesDomicilios;
+        static conIncidentesObservaciones conIncidentesObservaciones;
 
         #endregion
 
@@ -22,8 +24,13 @@ namespace DataAccess.Repositories
         static IncidentDal()
         {
             conIncidentes = new conIncidentes();
+            conIncidentes.GradoOperativoId = new typGradosOperativos();
+            conIncidentes.ClienteId = new typClientes();
             conClientesIntegrantes = new conClientesIntegrantes();
             conLckIncidentes = new conlckIncidentes();
+            conIncidentesDomicilios = new conIncidentesDomicilios();
+            conIncidentesDomicilios.Domicilio = new usrDomicilio();
+            conIncidentesObservaciones = new conIncidentesObservaciones();         
         }
 
         #endregion
@@ -111,12 +118,37 @@ namespace DataAccess.Repositories
             string pPac = incident.Paciente;
             bool pAddPac = true;
 
-            if (conIncidentes.ValidarIncidente(pFec,pNic,pCliAbr,pCli,pAfl,pGdo,pDom,pLoc,pPac,ref pAddPac))
+            string errors = "";
+
+            if (conIncidentes.ValidarIncidente(pFec,pNic,pCliAbr,pCli,pAfl,pGdo,pDom,pLoc,pPac,ref pAddPac,ref errors, true))
             {
 
+                conIncidentes.FecIncidente = pFec;
+                conIncidentes.NroIncidente = pNic;
+                conIncidentes.ClienteId.AbreviaturaId = pCliAbr;
+                conIncidentes.ClienteId.ID = pCli;
+                conIncidentes.NroAfiliado = pAfl;
+                conIncidentes.GradoOperativoId.ID = pGdo;
+                conIncidentes.Paciente = pPac;
+
+                conIncidentesDomicilios.Domicilio.dmEntreCalle1 = incident.Domicilio.BetweenStreet1;
+                conIncidentesDomicilios.Domicilio.dmEntreCalle2 = incident.Domicilio.BetweenStreet2;
+                conIncidentesDomicilios.Domicilio.dmCalle = incident.Domicilio.Street;
+                conIncidentesDomicilios.Domicilio.dmPiso = incident.Domicilio.Floor;
+                conIncidentesDomicilios.Domicilio.dmDepto = incident.Domicilio.Department;
+                conIncidentesDomicilios.Domicilio.dmAltura = incident.Domicilio.Height;
+
+
+                bool saved = conIncidentes.SetIncidente(conIncidentes, conIncidentesDomicilios, conIncidentesObservaciones, pFec);
+                if (saved)
+                {
+                    return new DatabaseValidationResult(errors, true);
+                }
             }
 
-            return new DatabaseValidationResult();
+            return new DatabaseValidationResult(errors,false);
+
+
         }
         #endregion
 

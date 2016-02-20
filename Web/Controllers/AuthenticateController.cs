@@ -12,6 +12,7 @@ namespace Shaman.Controllers
     public class AuthenticateController : BaseApiController
     {
         // POST api/<controller>
+        [HttpPost]
         public IHttpActionResult Post(UserViewModel user)
         {
             try

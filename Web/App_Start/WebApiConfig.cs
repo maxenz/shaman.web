@@ -17,6 +17,7 @@ namespace Shaman
             // Web API routes
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.MapHttpAttributeRoutes();
+            config.EnableCors();
 
             System.Web.Http.GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.Formatters.Insert(0, new System.Net.Http.Formatting.JsonMediaTypeFormatter());

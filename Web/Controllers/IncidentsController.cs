@@ -147,25 +147,17 @@ namespace Shaman.Controllers
         }
 
         [HttpPost]
-        [HttpOptions]
         public IHttpActionResult SaveIncident(IncidentViewModel incViewModel)
         {
             try
             {
+                Incident incident = incViewModel.ConvertViewModelToIncident();
 
-                Locality locality = LocalityDal.GetIdByAbreviaturaId(incViewModel.LocAbreviature);
-                incViewModel.Locality = locality;
+                incident.Cliente = ClientDal.GetIdByAbreviaturaId(incViewModel.Client);
+                incident.Localidad = LocalityDal.GetIdByAbreviaturaId(incViewModel.LocAbreviature);
 
-                //ValidateIncident(incidentViewModel);
-                if (ModelState.IsValid)
-                {
-                    //Incident incident = IncidentDal.SaveIncident(Incidente, IncidentesDomicilios, IncidentesObservaciones, DateTime.Now, Int64 Diagnostico = 0, Int64 Motivo = 0, TiempoCarga IncidenteTiempoCarga = TiempoCarga.Presente);
-                    Incident incident = new Incident();
-                    return Ok(incident);
-
-                }
-                //return Ok();
-                return Ok(incViewModel);
+                DatabaseValidationResult validationResult = IncidentDal.SaveIncident(incident);
+                return Ok(validationResult);
 
             }
             catch (Exception ex)

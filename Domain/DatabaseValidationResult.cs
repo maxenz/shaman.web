@@ -8,8 +8,19 @@ namespace Domain
 {
     public class DatabaseValidationResult
     {
-        public List<string> ValidationMessages { get; set; }
+        public string ErrorMessages { get; set; }
 
         public bool IsValid { get; set; }
+
+        public object Result { get; set; }
+
+        public DatabaseValidationResult() { }
+
+        public DatabaseValidationResult(string errorMessages, bool isValid)
+        {
+            this.ErrorMessages = errorMessages;
+            this.IsValid = isValid;
+        }
+
     }
 }

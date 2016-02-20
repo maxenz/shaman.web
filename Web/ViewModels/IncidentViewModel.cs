@@ -15,7 +15,6 @@ namespace Shaman.ViewModels
         public long Id { get; set; }
         public DateTime IncDate { get; set; }
         public string LocAbreviature { get; set; }
-        public Locality Locality { get; set; }
         public string Number { get; set; }
         public string Partido { get; set; }
         public string Patient { get; set; }
@@ -31,15 +30,11 @@ namespace Shaman.ViewModels
             Incident incident = new Incident();
             incident.FechaIncidente = this.IncDate;
             incident.NroIncidente = this.Number;
-            incident.Cliente = new Client();
-            incident.Cliente.AbreviaturaId = this.Client;
             incident.NroAfiliado = this.AffiliateNumber;      
             incident.GradoOperativo = new OperativeGrade();
             incident.GradoOperativo.Id = this.OperativeGradeSelected.Id;
-            incident.Domicilio = new Domicile();
-            incident.Domicilio.Description = this.Domicile.GetDomicileDescription();            
+            incident.Domicilio = this.Domicile.ConvertViewModelToDomicile();         
             incident.Paciente = this.Patient;
-
 
             return incident;
         }
