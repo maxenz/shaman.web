@@ -1772,11 +1772,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DomicileViewModel.cs" />
+    <Compile Include="ViewModels\GenericLabelViewModel.cs" />
+    <Compile Include="ViewModels\IvaViewModel.cs" />
     <Compile Include="ViewModels\OperativeContainerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DespachoInformationViewModel.cs" />
     <Compile Include="ViewModels\IncidentViewModel.cs" />
-    <Compile Include="ViewModels\TestingViewModel.cs" />
+    <Compile Include="ViewModels\OperativeGradeViewModel.cs" />
+    <Compile Include="ViewModels\SexViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -148,91 +148,94 @@ namespace Shaman.Controllers
 
         [HttpPost]
         [HttpOptions]
-        public IHttpActionResult SaveIncident(TestingViewModel testingViewModel)
+        public IHttpActionResult SaveIncident(IncidentViewModel incViewModel)
         {
             try
             {
 
-                //ValidateIncident(incidentViewModel);
-                //if (ModelState.IsValid)
-                //{
-                //    //Incident incident = IncidentDal.SaveIncident(Incidente, IncidentesDomicilios, IncidentesObservaciones, DateTime.Now, Int64 Diagnostico = 0, Int64 Motivo = 0, TiempoCarga IncidenteTiempoCarga = TiempoCarga.Presente);
-                //    Incident incident = new Incident();
-                //    return Ok(incident);
+                Locality locality = LocalityDal.GetIdByAbreviaturaId(incViewModel.LocAbreviature);
+                incViewModel.Locality = locality;
 
-                //}
+                //ValidateIncident(incidentViewModel);
+                if (ModelState.IsValid)
+                {
+                    //Incident incident = IncidentDal.SaveIncident(Incidente, IncidentesDomicilios, IncidentesObservaciones, DateTime.Now, Int64 Diagnostico = 0, Int64 Motivo = 0, TiempoCarga IncidenteTiempoCarga = TiempoCarga.Presente);
+                    Incident incident = new Incident();
+                    return Ok(incident);
+
+                }
                 //return Ok();
-                return Ok(testingViewModel);
+                return Ok(incViewModel);
 
             }
             catch (Exception ex)
             {
                 return InternalServerError(ex);
-            }
+            }   
         }
 
-        private void ValidateIncident(IncidentViewModel viewModel)
-        {
-            if (viewModel.CodigoCliente <= 0)
-            {
-                ModelState.AddModelError("Cliente", "Debe establecer el código de cliente");
-            }
+        //private void ValidateIncident(IncidentViewModel viewModel)
+        //{
+        //    if (viewModel.CodigoCliente <= 0)
+        //    {
+        //        ModelState.AddModelError("Cliente", "Debe establecer el código de cliente");
+        //    }
 
-            if (ClientDal.GetIdByNroAfiliado(viewModel.CodigoCliente.ToString(), viewModel.NroAfiliado) == null)
-            {
-                ModelState.AddModelError("Afiliados", "El afiliado no se encuentra en padrón de " + viewModel.CodigoCliente);
-            }
+        //    if (ClientDal.GetIdByNroAfiliado(viewModel.CodigoCliente.ToString(), viewModel.NroAfiliado) == null)
+        //    {
+        //        ModelState.AddModelError("Afiliados", "El afiliado no se encuentra en padrón de " + viewModel.CodigoCliente);
+        //    }
 
-            if (viewModel.Clasificacion == Clasificacion.IntDomiciliaria && viewModel.CargaHistorica && viewModel.FechaServicio < DateTime.Now)
-            {
-                ModelState.AddModelError("Fecha Servicio", "La fecha del servicio no puede ser inferior al día de hoy");
-            }
+        //    if (viewModel.Clasificacion == Clasificacion.IntDomiciliaria && viewModel.CargaHistorica && viewModel.FechaServicio < DateTime.Now)
+        //    {
+        //        ModelState.AddModelError("Fecha Servicio", "La fecha del servicio no puede ser inferior al día de hoy");
+        //    }
 
-            if (viewModel.GradoOperativoId == 0)
-            {
-                ModelState.AddModelError("Grado Operativo", "Debe establecer el grado operativo del servicio");
-            }
+        //    if (viewModel.GradoOperativoId == 0)
+        //    {
+        //        ModelState.AddModelError("Grado Operativo", "Debe establecer el grado operativo del servicio");
+        //    }
 
-            if (String.IsNullOrEmpty(viewModel.DomicilioDescripcion))
-            {
-                ModelState.AddModelError("Domicilio", "Debe establecer el domicilio del servicio");
-            }
+        //    if (String.IsNullOrEmpty(viewModel.DomicilioDescripcion))
+        //    {
+        //        ModelState.AddModelError("Domicilio", "Debe establecer el domicilio del servicio");
+        //    }
 
-            if (viewModel.LocalidadId == 0)
-            {
-                ModelState.AddModelError("Localidad", "Debe establecer la localidad del domicilio del servicio");
-            }
+        //    if (viewModel.LocalidadId == 0)
+        //    {
+        //        ModelState.AddModelError("Localidad", "Debe establecer la localidad del domicilio del servicio");
+        //    }
 
-            if (String.IsNullOrEmpty(viewModel.Paciente))
-            {
-                ModelState.AddModelError("Nombre Paciente", "Debe establecer el nombre del paciente");
-            }
+        //    if (String.IsNullOrEmpty(viewModel.Paciente))
+        //    {
+        //        ModelState.AddModelError("Nombre Paciente", "Debe establecer el nombre del paciente");
+        //    }
 
-            if (String.IsNullOrEmpty(viewModel.DomicilioDestino))
-            {
-                ModelState.AddModelError("Domicilio Destino", "Debe establecer el domicilio de destino");
-            }
+        //    if (String.IsNullOrEmpty(viewModel.DomicilioDestino))
+        //    {
+        //        ModelState.AddModelError("Domicilio Destino", "Debe establecer el domicilio de destino");
+        //    }
 
-            if (String.IsNullOrEmpty(viewModel.LocalidadDestino))
-            {
-                ModelState.AddModelError("Localidad Destino", "Debe establecer la localidad del domicilio de destino");
-            }
+        //    if (String.IsNullOrEmpty(viewModel.LocalidadDestino))
+        //    {
+        //        ModelState.AddModelError("Localidad Destino", "Debe establecer la localidad del domicilio de destino");
+        //    }
 
-            if (String.IsNullOrEmpty(viewModel.LocalidadDestino))
-            {
-                ModelState.AddModelError("Localidad Destino", "Debe establecer la localidad del domicilio de destino");
-            }
+        //    if (String.IsNullOrEmpty(viewModel.LocalidadDestino))
+        //    {
+        //        ModelState.AddModelError("Localidad Destino", "Debe establecer la localidad del domicilio de destino");
+        //    }
 
-            if (viewModel.TipoMorosidad == 2 )
-            {
-                ModelState.AddModelError("Morosidad", ClientDal.GetEstadoMorosidad(viewModel.CodigoCliente));
-            }
+        //    if (viewModel.TipoMorosidad == 2 )
+        //    {
+        //        ModelState.AddModelError("Morosidad", ClientDal.GetEstadoMorosidad(viewModel.CodigoCliente));
+        //    }
 
-            if (viewModel.SinCobertura == 1 || viewModel.SinCobertura == 2)
-            {
-                //TODO
-                //ModelState.AddModelError("Cobertura Grado", ClientDal.GetEstadoMorosidad(viewModel.CodigoCliente));
-            }
-        }
+        //    if (viewModel.SinCobertura == 1 || viewModel.SinCobertura == 2)
+        //    {
+        //        //TODO
+        //        //ModelState.AddModelError("Cobertura Grado", ClientDal.GetEstadoMorosidad(viewModel.CodigoCliente));
+        //    }
+        //}
     }
 }

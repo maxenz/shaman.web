@@ -29,6 +29,8 @@ namespace Domain
 
         public string Department { get; set; }
 
+        public Domicile() { }
+
         public Domicile(usrDomicilio usrDomicilio)
         {
             this.Latitude = usrDomicilio.dmLatitud;

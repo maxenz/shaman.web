@@ -5,8 +5,10 @@ using System.Web;
 
 namespace Shaman.ViewModels
 {
-    public class TestingViewModel
+    public abstract class GenericLabelViewModel
     {
-        public string PhoneNumber { get; set; }
+        public long Id { get; set; }
+
+        public string Label { get; set; }
     }
 }
