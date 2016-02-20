@@ -44,5 +44,7 @@ namespace Shaman.ViewModels
         public int TipoMorosidad { get; set; }
         public int SinCobertura { get; set; }
 
+        public string PhoneNumber { get; set; }
+
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShamanExpressDLL;
 using Domain;
 using Domain.Utils;
@@ -13,17 +10,25 @@ namespace DataAccess.Repositories
     public static class IncidentDal
     {
 
+        #region Properties
+
         static conIncidentes conIncidentes;
         static conClientesIntegrantes conClientesIntegrantes;
         static conlckIncidentes conLckIncidentes;
+
+        #endregion
+
+        #region Constructors
         static IncidentDal()
         {
-
             conIncidentes = new conIncidentes();
             conClientesIntegrantes = new conClientesIntegrantes();
             conLckIncidentes = new conlckIncidentes();
         }
 
+        #endregion
+
+        #region Static Methods
         public static List<IncidentGridDTO> GetAll()
         {
             DataTable operativa = conIncidentes.GetOperativa();
@@ -91,5 +96,29 @@ namespace DataAccess.Repositories
             conIncidentes.Abrir(id);
             return new Incident(conIncidentes);
         }
+
+        public static DatabaseValidationResult SaveIncident(Incident incident)
+        {
+
+            DateTime pFec = incident.FechaIncidente;
+            string pNic = incident.NroIncidente;
+            string pCliAbr = incident.Cliente.AbreviaturaId;
+            long pCli = incident.Cliente.Id;
+            string pAfl = incident.NroAfiliado;
+            long pGdo = incident.GradoOperativo.Id;
+            string pDom = incident.Domicilio.Description;
+            long pLoc = incident.Localidad.ID;
+            string pPac = incident.Paciente;
+            bool pAddPac = true;
+
+            if (conIncidentes.ValidarIncidente(pFec,pNic,pCliAbr,pCli,pAfl,pGdo,pDom,pLoc,pPac,ref pAddPac))
+            {
+
+            }
+
+            return new DatabaseValidationResult();
+        }
+        #endregion
+
     }
 }

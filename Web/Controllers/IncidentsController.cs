@@ -146,19 +146,23 @@ namespace Shaman.Controllers
             }
         }
 
-
-        public IHttpActionResult SaveIncident(IncidentViewModel viewModel)
+        [HttpPost]
+        [HttpOptions]
+        public IHttpActionResult SaveIncident(TestingViewModel testingViewModel)
         {
             try
             {
-                ValidateIncident(viewModel);
-                if (ModelState.IsValid)
-                {
-                    //Incident incident = IncidentDal.SaveIncident(Incidente, IncidentesDomicilios, IncidentesObservaciones, DateTime.Now, Int64 Diagnostico = 0, Int64 Motivo = 0, TiempoCarga IncidenteTiempoCarga = TiempoCarga.Presente);
-                    Incident incident = new Incident();
-                    return Ok(incident);
-                }
-                return Ok();
+
+                //ValidateIncident(incidentViewModel);
+                //if (ModelState.IsValid)
+                //{
+                //    //Incident incident = IncidentDal.SaveIncident(Incidente, IncidentesDomicilios, IncidentesObservaciones, DateTime.Now, Int64 Diagnostico = 0, Int64 Motivo = 0, TiempoCarga IncidenteTiempoCarga = TiempoCarga.Presente);
+                //    Incident incident = new Incident();
+                //    return Ok(incident);
+
+                //}
+                //return Ok();
+                return Ok(testingViewModel);
 
             }
             catch (Exception ex)

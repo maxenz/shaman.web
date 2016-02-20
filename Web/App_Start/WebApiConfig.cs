@@ -18,17 +18,20 @@ namespace Shaman
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-    name: "ActionApi",
-    routeTemplate: "api/{controller}/{action}/{id}",
-    defaults: new { id = RouteParameter.Optional }
-);
+            System.Web.Http.GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            config.Formatters.Insert(0, new System.Net.Http.Formatting.JsonMediaTypeFormatter());
 
             config.Routes.MapHttpRoute(
-name: "WebApi",
-routeTemplate: "api/{controller}/{id}",
-defaults: new { id = RouteParameter.Optional }
-);
+                name: "ActionApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "WebApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
 
 
@@ -39,7 +42,7 @@ defaults: new { id = RouteParameter.Optional }
 
 
 
-        
+
 
         }
     }

@@ -9,7 +9,7 @@ namespace Domain
 {
     public class Locality
     {
-
+        public long ID { get; set; }
         public string AbreviaturaId { get; set; }
 
         public string Descripcion { get; set; }
@@ -29,6 +29,7 @@ namespace Domain
             this.Partido = new Partido(conLocalidades.PartidoId);
             this.Province = new Province(conLocalidades.ProvinciaId);
             this.GeographicZone = new GeographicZone(conLocalidades.ZonaGeograficaId);
+            this.ID = conLocalidades.ID;
                  
         }
 
