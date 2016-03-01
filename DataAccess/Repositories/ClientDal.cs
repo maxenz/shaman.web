@@ -13,26 +13,16 @@ namespace DataAccess
     public static class ClientDal
     {
 
-        static conClientes conClientes;
-        static conClientesIntegrantes conClientesIntegrantes;
-        static conPlanes conPlanes;
-
-        static ClientDal()
-        {
-            conClientes = new conClientes();
-            conClientesIntegrantes = new conClientesIntegrantes();
-            conPlanes = new conPlanes();
-
-        }
-
         public static Client GetById(long id)
         {
+            conClientes conClientes = new conClientes();
             conClientes.Abrir(id.ToString());
             return new Client(conClientes);
         }
 
         public static ClientMember GetByPhone(string phone)
         {
+            conClientesIntegrantes conClientesIntegrantes = new conClientesIntegrantes();
             long idClientesIntegrantes = conClientesIntegrantes.GetByPhone(phone);
             if (idClientesIntegrantes > 0)
             {
@@ -45,6 +35,8 @@ namespace DataAccess
 
         public static List<Plan> GetAllPlansByClient(string client)
         {
+            conClientes conClientes = new conClientes();
+            conPlanes conPlanes = new conPlanes();
             long id = conClientes.GetIDByAbreviaturaId(client);
             DataTable plans = conPlanes.GetAll(id);
             return plans.DataTableToList<Plan>();
@@ -52,6 +44,7 @@ namespace DataAccess
 
         public static Client GetIdByAbreviaturaId(string clientAbreviaturaId)
         {
+            conClientes conClientes = new conClientes();
             Client client = null;
             long id = conClientes.GetIDByAbreviaturaId(clientAbreviaturaId, true);
             if (id != 0)
@@ -67,6 +60,7 @@ namespace DataAccess
 
         public static string GetEstadoMorosidad(long clienteId)
         {
+            conClientes conClientes = new conClientes();
             Client client = null;
             //long id = conClientes.GetIDByAbreviaturaId(clienteId, true);
             if (clienteId != 0)
@@ -79,6 +73,7 @@ namespace DataAccess
 
         public static ClientMember GetIdByNroAfiliado(string clientAbreviaturaId, string affiliateNumber)
         {
+            conClientesIntegrantes conClientesIntegrantes = new conClientesIntegrantes();
             long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
             long id = conClientesIntegrantes.GetIDByNroAfiliado(clientId, affiliateNumber);
 
@@ -94,6 +89,7 @@ namespace DataAccess
 
         public static List<ClientMember> GetClientMembersByClient(string clientAbreviaturaId)
         {
+            conClientesIntegrantes conClientesIntegrantes = new conClientesIntegrantes();
             long clientId = GetIdByAbreviaturaId(clientAbreviaturaId).Id;
             DataTable dtClientMembers = conClientesIntegrantes.GetQueryBaseByCliente(clientId);
 
@@ -103,12 +99,14 @@ namespace DataAccess
 
         public static List<Client> GetAll()
         {
+            conClientes conClientes = new conClientes();
             DataTable dtClients = conClientes.GetAll();
             return dtClients.DataTableToList<Client>();
         }
 
         public static List<ClientMember> GetAllClientMembers()
         {
+            conClientesIntegrantes conClientesIntegrantes = new conClientesIntegrantes();
             DataTable dtClientMembers = conClientesIntegrantes.GetAll();
             return dtClientMembers.DataTableToList<ClientMember>();
         }

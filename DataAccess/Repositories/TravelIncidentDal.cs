@@ -13,15 +13,19 @@ namespace DataAccess.Repositories
     public static class TravelIncidentDal
     {
 
-        static conIncidentesViajes conIncidentesViajes;
+        #region Properties
 
-        static TravelIncidentDal()
-        {
-            conIncidentesViajes = new conIncidentesViajes();
-        }
+        private static conIncidentesViajes conIncidentesViajes { get; set; }
+        private static conIncidentesSucesos conIncidentesSucesos { get; set; }
+        private static conSucesosIncidentes conSucesos { get; set; }
+
+        #endregion
+
+        #region Public Methods
 
         public static TravelIncident GetDespachoPopupInformation(int id)
         {
+            conIncidentesViajes.CleanProperties(conIncidentesViajes);
             if (id > 0)
             {
                 conIncidentesViajes.Abrir(id.ToString());
@@ -30,5 +34,31 @@ namespace DataAccess.Repositories
 
             return null;
         }
+
+        public static DatabaseValidationResult Dispatch(Suggestion suggestion)
+        {
+
+            string sugType = SuggestionTypes.Soporte.ToString();
+
+            conIncidentesSucesos.CleanProperties(conIncidentesSucesos);
+            conSucesos.CleanProperties(conSucesos);
+
+            conIncidentesSucesos.IncidenteViajeId.SetObjectId(suggestion.ID.ToString());
+            conIncidentesSucesos.FechaHoraSuceso = DateTime.Now;
+            conIncidentesSucesos.SucesoIncidenteId.SetObjectId(conSucesos.GetIDByAbreviaturaId(sugType).ToString());
+            conIncidentesSucesos.MovilId.SetObjectId(suggestion.Movil.ID.ToString());
+
+            if (conIncidentesSucesos.addSuceso(conIncidentesSucesos))
+            {
+                return new DatabaseValidationResult("", true);
+                //shaman mensajeria
+            }
+            
+            return new DatabaseValidationResult("No se pudo despachar la sugerencia.", false);
+        }
+
+        #endregion
+
+
     }
 }

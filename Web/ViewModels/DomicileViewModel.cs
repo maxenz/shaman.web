@@ -15,6 +15,8 @@ namespace Shaman.ViewModels
         public int Height { get; set; }
         public string Street { get; set; }
 
+        public string Reference { get; set; }
+
         public Domicile ConvertViewModelToDomicile()
         {
             Domicile dom = new Domicile();
@@ -24,6 +26,7 @@ namespace Shaman.ViewModels
             dom.Floor = this.Floor;
             dom.Height = this.Height;
             dom.Street = this.Street;
+            dom.Reference = this.Reference;
 
             return dom;
         }

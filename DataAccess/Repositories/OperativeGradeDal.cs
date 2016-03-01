@@ -12,15 +12,10 @@ namespace DataAccess.Repositories
 {
     public static class OperativeGradeDal
     {
-        static conGradosOperativos conGradosOperativos;
-
-        static OperativeGradeDal()
-        {
-            conGradosOperativos = new conGradosOperativos();
-        }
 
         public static List<OperativeGrade> GetAll()
         {
+            conGradosOperativos conGradosOperativos = new conGradosOperativos();
             DataTable grades = conGradosOperativos.GetAll();
             return grades.DataTableToList<OperativeGrade>();
         }

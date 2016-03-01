@@ -1777,6 +1777,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DispatchViewModel.cs" />
     <Compile Include="ViewModels\DomicileViewModel.cs" />
     <Compile Include="ViewModels\GenericLabelViewModel.cs" />
     <Compile Include="ViewModels\IvaViewModel.cs" />

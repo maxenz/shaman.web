@@ -10,15 +10,10 @@ namespace DataAccess.Repositories
 {
     public static class LocalityDal
     {
-        static conLocalidades conLocalidades;
-
-        static LocalityDal()
-        {
-            conLocalidades = new conLocalidades();
-        }
 
         public static Locality GetIdByAbreviaturaId(string locAbreviaturaId)
         {
+            conLocalidades conLocalidades = new conLocalidades();
             long id = conLocalidades.GetIDByAbreviaturaId(locAbreviaturaId);
             if (id != 0)
             {

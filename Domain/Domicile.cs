@@ -15,7 +15,18 @@ namespace Domain
 
         public string Reference { get; set; }
 
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return String.Format("{0} {1} {2}{3}", this.Street, this.Height, this.Department, this.Floor);
+            }
+
+            set
+            {
+                value = this.Description;
+            }
+        }
 
         public string BetweenStreet1 { get; set; }
 

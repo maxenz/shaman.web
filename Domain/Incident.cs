@@ -86,6 +86,8 @@ namespace Domain
 
         public Client Cliente { get; set; }
 
+        public string Observaciones { get; set; }
+
         #endregion
 
         #region Constructors
@@ -111,14 +113,19 @@ namespace Domain
             this.Copago = objIncident.CoPago;
             this.PlanId = objIncident.PlanId;
             this.ID = objIncident.ID;
+            this.Observaciones = objIncident.Observaciones;
             
 
             if (objIncident.ClienteId != null)
             {
-                this.SituacionIvaId = objIncident.ClienteId.SituacionIvaId.ID;
                 this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
                 this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
                 this.Cliente = new Client(objIncident.ClienteId);
+
+                if (objIncident.ClienteId.SituacionIvaId != null)
+                {
+                    this.SituacionIvaId = objIncident.ClienteId.SituacionIvaId.ID;
+                }
             }
             
         }

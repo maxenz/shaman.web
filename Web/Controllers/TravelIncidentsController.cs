@@ -37,5 +37,20 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        [HttpPost]
+        public IHttpActionResult Dispatch(DispatchViewModel dispViewModel )
+        {
+            try
+            {
+                Suggestion sug = new Suggestion();
+                DatabaseValidationResult result = TravelIncidentDal.Dispatch(sug);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
 }

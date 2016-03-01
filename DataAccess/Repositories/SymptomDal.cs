@@ -8,15 +8,10 @@ namespace DataAccess.Repositories
 {
     public static class SymptomDal
     {
-        static conSintomas conSintomas;
-
-        static SymptomDal()
-        {
-            conSintomas = new conSintomas();
-        }
 
         public static List<Symptom> GetAll()
         {
+            conSintomas conSintomas = new conSintomas();
             DataTable symptons = conSintomas.GetAll();
             return symptons.DataTableToList<Symptom>();
         }

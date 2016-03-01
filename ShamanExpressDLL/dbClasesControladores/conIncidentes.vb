@@ -474,8 +474,9 @@ Public Class conIncidentes
         End Try
     End Function
 
-    Public Function ValidarIncidente(ByVal pFec As Date, ByVal pNic As String, ByVal pCliAbr As String, ByVal pCli As Int64, ByVal pAfl As String, ByVal pGdo As Int64, ByVal pDom As String, ByVal pLoc As Int64, ByVal pPac As String, ByRef pAddPac As Boolean, Optional ByRef vMsgErr As String = "", Optional ByVal pWeb As Boolean = False, Optional ByVal pClf As gdoClasificacion = gdoClasificacion.gdoIncidente, Optional ByVal pDerDom As String = "", Optional ByVal pDerLoc As Int64 = 0, Optional ByVal pIncTiempoCarga As incTiempoCarga = incTiempoCarga.Presente, Optional pPla As Int64 = 0) As Boolean
+    Public Function ValidarIncidente(ByVal pFec As Date, ByVal pNic As String, ByVal pCliAbr As String, ByVal pCli As Int64, ByVal pAfl As String, ByVal pGdo As Int64, ByVal pDom As String, ByVal pLoc As Int64, ByVal pPac As String, ByRef pAddPac As Boolean, Optional ByRef vMsgErr As String = "", Optional ByVal pClf As gdoClasificacion = gdoClasificacion.gdoIncidente, Optional ByVal pDerDom As String = "", Optional ByVal pDerLoc As Int64 = 0, Optional ByVal pIncTiempoCarga As incTiempoCarga = incTiempoCarga.Presente, Optional pPla As Int64 = 0) As Boolean
         ValidarIncidente = False
+
         Try
             pAddPac = False
             Dim vValAfl As Boolean = True
@@ -488,7 +489,7 @@ Public Class conIncidentes
             Else
                 vValAfl = False
             End If
-            If Not vValAfl And pCli <> shamanConfig.ClienteDefaultId.ID Then
+            If Not vValAfl And pCli <> shamanConfig.ClienteDefaultId.ID And Not dllMode Then
                 If MsgBox("El afiliado no se encuentra en padrón de " & pCliAbr & vbCrLf & "Confirma ?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Afiliados") = MsgBoxResult.No Then
                     Exit Function
                 Else
@@ -524,7 +525,7 @@ Public Class conIncidentes
                     HaveCoberturaGrado(pCli, pGdo, 0, vMsgErr, False, pClf, pPla)
                 ElseIf shamanConfig.modSinCobertura = 1 Then
                     HaveCoberturaGrado(pCli, pGdo, 0, vMsgErr, False, pClf, pPla)
-                    If vMsgErr <> "" And Not pWeb Then
+                    If vMsgErr <> "" And Not dllMode Then
                         If MsgBox(vMsgErr & vbCrLf & "¿ Desea tomar el servicio de todas maneras ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Aprobación") = MsgBoxResult.Yes Then
                             vMsgErr = ""
                             Me.flgCubierto = 0
@@ -535,7 +536,7 @@ Public Class conIncidentes
                 End If
             End If
 
-            If vMsgErr <> "" And Not pWeb Then
+            If vMsgErr <> "" And Not dllMode Then
                 MsgBox(vMsgErr, MsgBoxStyle.Critical, "Recepción")
             Else
                 ValidarIncidente = True

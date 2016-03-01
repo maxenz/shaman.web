@@ -8,15 +8,10 @@ namespace DataAccess.Repositories
 {
     public static class IvaDal
     {
-        static conSituacionesIva conSituacionesIva;
-
-        static IvaDal()
-        {
-            conSituacionesIva = new conSituacionesIva();            
-        }
 
         public static List<IvaSituation> GetAllSituations()
         {
+            conSituacionesIva conSituacionesIva = new conSituacionesIva();
             DataTable ivaSituations = conSituacionesIva.GetAll();
             return ivaSituations.DataTableToList<IvaSituation>();
         }

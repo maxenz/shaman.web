@@ -8,8 +8,8 @@ namespace Domain
 {
     public class Suggestion
     {
-        public int ID { get; set; }
-        public string Movil { get; set; }
+        public long ID { get; set; }
+        public Mobile Movil { get; set; }
         public string TipoMovil { get; set; }
         public string Estado { get; set; }
         public int Sel { get; set; }
