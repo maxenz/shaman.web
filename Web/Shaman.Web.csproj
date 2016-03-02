@@ -1777,7 +1777,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DispatchViewModel.cs" />
+    <Compile Include="ViewModels\DispatchPopupViewModelData.cs" />
     <Compile Include="ViewModels\DomicileViewModel.cs" />
     <Compile Include="ViewModels\GenericLabelViewModel.cs" />
     <Compile Include="ViewModels\IvaViewModel.cs" />
@@ -1787,6 +1787,8 @@
     <Compile Include="ViewModels\IncidentViewModel.cs" />
     <Compile Include="ViewModels\OperativeGradeViewModel.cs" />
     <Compile Include="ViewModels\SexViewModel.cs" />
+    <Compile Include="ViewModels\TravelIncidentViewModel.cs" />
+    <Compile Include="ViewModels\Converters\TravelIncidentVMToTravelIncidentConverter.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

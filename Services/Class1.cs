@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Services
 {
-    public enum SuggestionTypes
+    public class Class1
     {
-        Traslado = 'T',
-        Soporte = 'S',
-        InternacionDomiciliaria = 'B'
     }
 }

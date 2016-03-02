@@ -11,47 +11,54 @@ namespace Domain
     {
         #region Properties
 
-        public long Demora { get; private set; }
-        public string Diagnostico { get; private set; }
-        public string DiagnosticoId { get; private set; }
-        public string Depto { get; private set; }
-        public string MotivoNoRealizacionId { get; private set; }
-        public string BaseOperativa { get; private set; }
-        public string BaseOperativaId { get; private set; }
-        public long MovilId { get; private set; }
-        public string MotivoNoRealizacion { get; private set; }
-        public long TipoMovilId { get; private set; }
-        public string TipoMovil { get; private set; }
-        public long MovilPreasignadoId { get; private set; }
-        public string AbreviaturaId { get; private set; }
-        public string GradoOperativoId { get; private set; }
-        public string GradoColor { get; private set; }
-        public long Altura { get; private set; }
-        public string Calle { get; private set; }
-        public string EntreCalle1 { get; private set; }
-        public string EntreCalle2 { get; private set; }
-        public string Piso { get; private set; }
-        public string Domicilio { get; private set; }
-        public int MovilActivo { get; private set; }
-        public string Movil { get; private set; }
-        public string MovilPreasignado { get; private set; }
-        public string dmReferencia { get; private set; }
-        public decimal dmLongitud { get; private set; }
-        public decimal dmLatitud { get; private set; }
-        public int flgStatus { get; private set; }
-        public int flgModoDespacho { get; private set; }
-        public DateTime HoraSolDerivacion { get; private set; }
-        public DateTime HoraSalida { get; private set; }
-        public DateTime HoraLlegada { get; private set; }
-        public DateTime HoraLlamada { get; private set; }
-        public DateTime HoraInternacion { get; private set; }
-        public DateTime HoraInicial { get; private set; }
-        public DateTime HoraFinalizacion { get; private set; }
-        public DateTime HoraDespacho { get; private set; }
-        public DateTime HoraDerivacion { get; private set; }
-        public string LocalidadId { get; private set; }
-        public DateTime FechaIncidente { get; private set; }
-        public string NroIncidente { get; private set; }
+        public long Demora { get; set; }
+        public string Diagnostico { get; set; }
+        public string DiagnosticoId { get; set; }
+        public string Depto { get; set; }
+        public string MotivoNoRealizacionId { get; set; }
+        public string BaseOperativa { get; set; }
+        public string BaseOperativaId { get; set; }
+        public long MovilId { get; set; }
+        public string MotivoNoRealizacion { get; set; }
+        public long TipoMovilId { get; set; }
+        public string TipoMovil { get; set; }
+        public long MovilPreasignadoId { get; set; }
+        public string AbreviaturaId { get; set; }
+        public string GradoOperativoId { get; set; }
+        public string GradoColor { get; set; }
+        public long Altura { get; set; }
+        public string Calle { get; set; }
+        public string EntreCalle1 { get; set; }
+        public string EntreCalle2 { get; set; }
+        public string Piso { get; set; }
+        public string Domicilio { get; set; }
+        public int MovilActivo { get; set; }
+        public string Movil { get; set; }
+        public string MovilPreasignado { get; set; }
+        public string dmReferencia { get; set; }
+        public decimal dmLongitud { get; set; }
+        public decimal dmLatitud { get; set; }
+        public int flgStatus { get; set; }
+        public int flgModoDespacho { get; set; }
+        public DateTime HoraSolDerivacion { get; set; }
+        public DateTime HoraSalida { get; set; }
+        public DateTime HoraLlegada { get; set; }
+        public DateTime HoraLlamada { get; set; }
+        public DateTime HoraInternacion { get; set; }
+        public DateTime HoraInicial { get; set; }
+        public DateTime HoraFinalizacion { get; set; }
+        public DateTime HoraDespacho { get; set; }
+        public DateTime HoraDerivacion { get; set; }
+        public string LocalidadId { get; set; }
+        public DateTime FechaIncidente { get; set; }
+        public string NroIncidente { get; set; }
+        public string IncidenteId { get; set; }
+        public int ViewType { get; set; }
+        public string Estado { get; set; }
+        public bool MovAptoGrado { get; set; }
+        public bool MovZona { get; set; }
+
+        public long Id { get; set; }
 
         #endregion
 

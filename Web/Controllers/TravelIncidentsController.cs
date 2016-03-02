@@ -1,18 +1,17 @@
-﻿using DataAccess;
-using DataAccess.Repositories;
+﻿using DataAccess.Repositories;
 using Domain;
 using Shaman.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using Shaman.ViewModels.Converters;
 
 namespace Shaman.Controllers
 {
     public class TravelIncidentsController : BaseApiController
     {
+        #region Get Methods
+
         [HttpGet]
         [HttpOptions]
         public IHttpActionResult GetDespachoPopupInformation(int id, int psel)
@@ -38,13 +37,17 @@ namespace Shaman.Controllers
             }
         }
 
+        #endregion
+
+        #region Post Methods
+
         [HttpPost]
-        public IHttpActionResult Dispatch(DispatchViewModel dispViewModel )
+        public IHttpActionResult Dispatch(TravelIncidentViewModel travelIncidentViewModel)
         {
             try
             {
-                Suggestion sug = new Suggestion();
-                DatabaseValidationResult result = TravelIncidentDal.Dispatch(sug);
+                TravelIncident ti = TravelIncidentVMToTravelIncidentConverter.Convert(travelIncidentViewModel);
+                DatabaseValidationResult result = TravelIncidentDal.Dispatch(ti);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -52,5 +55,8 @@ namespace Shaman.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        #endregion
+
     }
 }

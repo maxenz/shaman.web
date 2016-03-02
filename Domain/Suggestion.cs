@@ -20,5 +20,7 @@ namespace Domain
         public int Tiempo { get; set; }
         public string DistanciaTiempo { get; set; }
         public string Link { get; set; }
+
+
     }
 }

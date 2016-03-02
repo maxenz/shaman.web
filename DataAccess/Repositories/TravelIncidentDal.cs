@@ -18,6 +18,7 @@ namespace DataAccess.Repositories
         private static conIncidentesViajes conIncidentesViajes { get; set; }
         private static conIncidentesSucesos conIncidentesSucesos { get; set; }
         private static conSucesosIncidentes conSucesos { get; set; }
+        private static conMovilesActuales conMovilActual { get; set; }
 
         #endregion
 
@@ -25,7 +26,7 @@ namespace DataAccess.Repositories
 
         public static TravelIncident GetDespachoPopupInformation(int id)
         {
-            conIncidentesViajes.CleanProperties(conIncidentesViajes);
+            conIncidentesViajes = new conIncidentesViajes();
             if (id > 0)
             {
                 conIncidentesViajes.Abrir(id.ToString());
@@ -35,18 +36,38 @@ namespace DataAccess.Repositories
             return null;
         }
 
-        public static DatabaseValidationResult Dispatch(Suggestion suggestion)
+        public static DatabaseValidationResult Dispatch(TravelIncident ti)
         {
-
+            conMovilActual.CleanProperties(conMovilActual);
+            conMovilActual.Abrir(conMovilActual.GetIDAndValidation(ti.MovilId, ti.Movil, false).ToString());
             string sugType = SuggestionTypes.Soporte.ToString();
+            modDeclares.callInfo = "frmPopupDespacho";
+            long vId = Convert.ToInt64(modDeclares.callInfo);
+
+            if (ti.ViewType > 0)
+            {
+                sugType = SuggestionTypes.Traslado.ToString();
+            } else
+            {
+                if (modDeclares.shamanConfig.flgTpoSalidaBase == 1)
+                {
+                    if (conSucesos.GetIDByAbreviaturaId("B") > 0)
+                    {
+                        if (conMovilActual.SucesoIncidenteId.AbreviaturaId == "L")
+                        {
+                            sugType = SuggestionTypes.InternacionDomiciliaria.ToString();
+                        }
+                    }
+                }
+            }
 
             conIncidentesSucesos.CleanProperties(conIncidentesSucesos);
             conSucesos.CleanProperties(conSucesos);
 
-            conIncidentesSucesos.IncidenteViajeId.SetObjectId(suggestion.ID.ToString());
+            conIncidentesSucesos.IncidenteViajeId.SetObjectId(ti.Id.ToString());
             conIncidentesSucesos.FechaHoraSuceso = DateTime.Now;
             conIncidentesSucesos.SucesoIncidenteId.SetObjectId(conSucesos.GetIDByAbreviaturaId(sugType).ToString());
-            conIncidentesSucesos.MovilId.SetObjectId(suggestion.Movil.ID.ToString());
+            conIncidentesSucesos.MovilId.SetObjectId(ti.MovilId.ToString());
 
             if (conIncidentesSucesos.addSuceso(conIncidentesSucesos))
             {

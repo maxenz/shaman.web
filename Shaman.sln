@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ShamanExpressDLL", "ShamanExpressDLL\ShamanExpressDLL.vbproj", "{1A8DFAE4-4E6F-4AD5-9B09-CFA395AA2065}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaman.Business", "Shaman.Business\Shaman.Business.csproj", "{C1632FE7-5EAD-423D-BDEF-2483A1C665FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{1A8DFAE4-4E6F-4AD5-9B09-CFA395AA2065}.Debug|Any CPU.Build.0 = Debug|x86
 		{1A8DFAE4-4E6F-4AD5-9B09-CFA395AA2065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A8DFAE4-4E6F-4AD5-9B09-CFA395AA2065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1632FE7-5EAD-423D-BDEF-2483A1C665FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1632FE7-5EAD-423D-BDEF-2483A1C665FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1632FE7-5EAD-423D-BDEF-2483A1C665FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1632FE7-5EAD-423D-BDEF-2483A1C665FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
