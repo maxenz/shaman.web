@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShamanExpressDLL;
-using Shaman.ViewModels;
 
 namespace Shaman.Business
 {

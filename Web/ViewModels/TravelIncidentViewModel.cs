@@ -20,5 +20,7 @@ namespace Shaman.ViewModels
         public string MobileType { get; set; }
 
         public string State { get; set; }
+
+        public long Id { get; set; }
     }
 }

@@ -38,15 +38,18 @@ namespace DataAccess.Repositories
 
         public static DatabaseValidationResult Dispatch(TravelIncident ti)
         {
+            conMovilActual = new conMovilesActuales();
+            conSucesos = new conSucesosIncidentes();
+            conIncidentesSucesos = new conIncidentesSucesos();
+            conIncidentesViajes = new conIncidentesViajes();
             conMovilActual.CleanProperties(conMovilActual);
+            ti.MovilId = MobileDal.GetMobileByNumber(ti.Movil).ID;
             conMovilActual.Abrir(conMovilActual.GetIDAndValidation(ti.MovilId, ti.Movil, false).ToString());
-            string sugType = SuggestionTypes.Soporte.ToString();
-            modDeclares.callInfo = "frmPopupDespacho";
-            long vId = Convert.ToInt64(modDeclares.callInfo);
+            string sugType = "S";
 
             if (ti.ViewType > 0)
             {
-                sugType = SuggestionTypes.Traslado.ToString();
+                sugType = "Z";
             } else
             {
                 if (modDeclares.shamanConfig.flgTpoSalidaBase == 1)
@@ -55,7 +58,7 @@ namespace DataAccess.Repositories
                     {
                         if (conMovilActual.SucesoIncidenteId.AbreviaturaId == "L")
                         {
-                            sugType = SuggestionTypes.InternacionDomiciliaria.ToString();
+                            sugType = "B";
                         }
                     }
                 }

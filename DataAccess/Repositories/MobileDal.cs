@@ -25,5 +25,17 @@ namespace DataAccess.Repositories
             DataTable sugerencias = conMovilesActuales.GetDTSugerenciaDespacho(tipoMovilId, gradoOperativoId, localidadId);
             return sugerencias.DataTableToList<Suggestion>();
         }
+
+        public static Mobile GetMobileByNumber(string mobNumber)
+        {
+            conMoviles conMoviles = new conMoviles();
+            long mobileId = conMoviles.GetIDByMovil(mobNumber);
+            if (mobileId != 0)
+            {
+                conMoviles.Abrir(mobileId.ToString());
+                return new Mobile(conMoviles);
+            }
+            return null;
+        }
     }
 }

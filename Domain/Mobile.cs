@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShamanExpressDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,15 @@ namespace Domain
         public int TipoMovilId { get; set; }
 
         public int ZonaGeograficaId { get; set; }
+
+        public Mobile() { }
+
+        public Mobile(conMoviles conMoviles)
+        {
+            this.ID = Convert.ToInt32(conMoviles.ID);
+            this.Movil = conMoviles.Movil;         
+        }
     }
+
+    
 }

@@ -19,5 +19,17 @@ namespace DataAccess.Repositories
             DataTable grades = conGradosOperativos.GetAll();
             return grades.DataTableToList<OperativeGrade>();
         }
+
+        public static OperativeGrade GetByAbreviaturaId(string abreviaturaId)
+        {
+            conGradosOperativos conGradosOperativos = new conGradosOperativos();
+            long id = conGradosOperativos.GetIDByAbreviaturaId(abreviaturaId);
+            if (id != 0)
+            {
+                conGradosOperativos.Abrir(id.ToString());
+                return new OperativeGrade(conGradosOperativos);
+            }
+            return null;
+        }
     }
 }

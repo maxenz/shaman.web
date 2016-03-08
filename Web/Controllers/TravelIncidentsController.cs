@@ -14,12 +14,14 @@ namespace Shaman.Controllers
 
         [HttpGet]
         [HttpOptions]
-        public IHttpActionResult GetDespachoPopupInformation(int id, int psel)
+        public IHttpActionResult GetDespachoPopupInformation(int id, int psel, string grade, string loc)
         {
             try
             {
+                Locality locality = LocalityDal.GetIdByAbreviaturaId(loc);
                 TravelIncident travelIncident = TravelIncidentDal.GetDespachoPopupInformation(id);
-                List<Suggestion> sugerencias = MobileDal.GetSugerencias(psel, 0, 0);//en funcion de un combo
+                OperativeGrade operativeGrade = OperativeGradeDal.GetByAbreviaturaId(grade);
+                List<Suggestion> sugerencias = MobileDal.GetSugerencias(psel, operativeGrade.Id, locality.ID);
 
                 DespachoInformationViewModel viewModel = new DespachoInformationViewModel();
                 viewModel.IncidentInfo = travelIncident;

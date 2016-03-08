@@ -18,7 +18,8 @@ namespace Shaman.ViewModels.Converters
             ti.Estado = travelIncidentViewModel.State;
             ti.MovAptoGrado = travelIncidentViewModel.MovAptoGrado;
             ti.MovZona = travelIncidentViewModel.MovZona;
-            return null;
+            ti.Id = travelIncidentViewModel.Id;
+            return ti;
         }
     }
 }

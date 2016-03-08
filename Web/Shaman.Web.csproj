@@ -1777,7 +1777,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DispatchPopupViewModelData.cs" />
     <Compile Include="ViewModels\DomicileViewModel.cs" />
     <Compile Include="ViewModels\GenericLabelViewModel.cs" />
     <Compile Include="ViewModels\IvaViewModel.cs" />
@@ -1819,6 +1818,10 @@
     <ProjectReference Include="..\Domain\Shaman.Domain.csproj">
       <Project>{98247e27-97fc-46f0-95ee-221b5fa51e13}</Project>
       <Name>Shaman.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShamanExpressDLL\ShamanExpressDLL.vbproj">
+      <Project>{1a8dfae4-4e6f-4ad5-9b09-cfa395aa2065}</Project>
+      <Name>ShamanExpressDLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

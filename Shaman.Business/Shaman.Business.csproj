@@ -41,16 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DispatchPopupManager.cs" />
+    <Compile Include="DispatchPopupViewModelData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShamanExpressDLL\ShamanExpressDLL.vbproj">
       <Project>{1a8dfae4-4e6f-4ad5-9b09-cfa395aa2065}</Project>
       <Name>ShamanExpressDLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Web\Shaman.Web.csproj">
-      <Project>{8f6d303c-7182-4b7b-8502-7537760dbb9b}</Project>
-      <Name>Shaman.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
