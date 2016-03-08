@@ -14,7 +14,7 @@ namespace DataAccess.Repositories
         public static List<IncidentGridDTO> GetAll()
         {
             conIncidentes conIncidentes = new conIncidentes();
-            DataTable operativa = conIncidentes.GetOperativa();
+            DataTable operativa = conIncidentes.GetOperativaDX();
             return operativa.DataTableToList<IncidentGridDTO>();
         }
 
@@ -72,7 +72,7 @@ namespace DataAccess.Repositories
 
             if (incidentId > 0)
             {
-                conIncidentes ci = new conIncidentes();          
+                conIncidentes ci = new conIncidentes();
                 ci.Abrir(Convert.ToString(incidentId));
                 return new Incident(ci);
             }
@@ -92,6 +92,7 @@ namespace DataAccess.Repositories
         {
             modDeclares.dllMode = true;
             conIncidentes conIncidentes = new conIncidentes();
+            conIncidentes.CleanProperties(conIncidentes);
             conIncidentesDomicilios conIncidentesDomicilios = new conIncidentesDomicilios();
             conLocalidades conLocalidades = new conLocalidades();
             conIncidentesObservaciones conIncidentesObservaciones = new conIncidentesObservaciones();
@@ -108,19 +109,27 @@ namespace DataAccess.Repositories
             bool pAddPac = false;
             bool vAddNew = true;
 
+            if (pCli == 0) pCli = modDeclares.shamanConfig.ClienteDefaultId.ID;
+
+            if (pGdo == 0)
+            {
+                conGradosOperativos objGrado = new conGradosOperativos();
+                pGdo = objGrado.GetDefault();
+                objGrado = null;
+            }
+
             string errors = "";
 
-            if (conIncidentes.ValidarIncidente(pFec,pNic,pCliAbr,pCli,pAfl,pGdo,pDom,pLoc,pPac,ref pAddPac,ref errors))
+            if (conIncidentes.ValidarIncidente(pFec, pNic, pCliAbr, pCli, pAfl, pGdo, pDom, pLoc, pPac, ref pAddPac, ref errors))
             {
                 // --> Cabecera del incidente
-                conIncidentes.CleanProperties(conIncidentes);
                 if (incident.ID > 0) vAddNew = false;
                 conIncidentes.FecIncidente = pFec;
                 conIncidentes.NroIncidente = pNic;
                 if (modDeclares.shamanConfig.modNumeracion == 1) conIncidentes.TrasladoId = Convert.ToInt64(incident.NroIncidente);
                 conIncidentes.Telefono = incident.Telefono;
                 conIncidentes.ClienteId.SetObjectId(Convert.ToString(pCli));
-                //conIncidentes.ClienteIntegranteId.SetObjectId(Convert.ToString(incident.NroAfiliado));
+                conIncidentes.ClienteIntegranteId.SetObjectId(Convert.ToString(incident.NroAfiliado));
                 conIncidentes.ClienteId.AbreviaturaId = pCliAbr;
                 conIncidentes.ClienteId.ID = pCli;
                 conIncidentes.NroAfiliado = pAfl;
@@ -134,11 +143,12 @@ namespace DataAccess.Repositories
                 conIncidentes.flgIvaGravado = Convert.ToInt32(incident.SituacionIvaId);
                 if (modDeclares.shamanConfig.opeNroInterno == 0)
                 {
-                    conIncidentes.Aviso = incident.Aviso;
+                    conIncidentes.Aviso = incident.Aviso ?? "";
 
-                } else
+                }
+                else
                 {
-                    conIncidentes.NroInterno = incident.Aviso;
+                    conIncidentes.NroInterno = incident.Aviso ?? "";
                 }
 
                 // --> Domicilio de IDA
@@ -153,18 +163,22 @@ namespace DataAccess.Repositories
                 conIncidentesDomicilios.Domicilio.dmAltura = incident.Domicilio.Height;
                 conIncidentesDomicilios.Domicilio.dmReferencia = incident.Domicilio.Reference ?? "";
 
-                //if (conIncidentesDomicilios.TipoOrigen == 0)
-                //{
-
-                //} else
-                //{
-                //    conIncidentesDomicilios.Domicilio.dmLatitud = 
-                //}
+                if (conIncidentesDomicilios.TipoOrigen == 0)
+                {
+                    var dom = conIncidentesDomicilios.Domicilio;
+                    modGPShaman.SetLatLong(ref dom, Convert.ToDecimal(conIncidentesDomicilios.LocalidadId.GetObjectId()));
+                    conIncidentesDomicilios.Domicilio = dom;
+                }
+                else
+                {
+                    //
+                }
 
                 conIncidentesObservaciones.CleanProperties(conIncidentesObservaciones);
                 conIncidentesObservaciones.Observaciones = incident.Observaciones;
 
-                bool saved = conIncidentes.SetIncidente(conIncidentes, conIncidentesDomicilios, conIncidentesObservaciones, pFec);
+                string dateFormatted = String.Format("{0:yyyy-MM-dd HH:mm:ss}", "1899-12-30 00:00:00");
+                bool saved = conIncidentes.SetIncidente(conIncidentes, conIncidentesDomicilios, conIncidentesObservaciones, Convert.ToDateTime(dateFormatted));
                 if (saved)
                 {
                     conlckIncidentes.CleanProperties(conlckIncidentes);
@@ -173,7 +187,7 @@ namespace DataAccess.Repositories
                 }
             }
 
-            return new DatabaseValidationResult(errors,false);
+            return new DatabaseValidationResult(errors, false);
 
 
         }

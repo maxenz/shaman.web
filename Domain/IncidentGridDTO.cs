@@ -72,6 +72,8 @@ namespace Domain
 
         public string GradoOperativoId { get; set; }
 
+        public string Grado { get; set; }
+
         public long SituacionIvaId { get; set; }
 
         public string PlanId { get; set; }
