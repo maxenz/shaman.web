@@ -74,11 +74,31 @@ namespace DataAccess.Repositories
 
             if (conIncidentesSucesos.addSuceso(conIncidentesSucesos))
             {
+                modDeclares.shamanMensajeria.EnviarIncidente(conIncidentesSucesos.IncidenteViajeId.ID, conIncidentesSucesos.MovilId.ID, true);
                 return new DatabaseValidationResult("", true);
                 //shaman mensajeria
             }
             
             return new DatabaseValidationResult("No se pudo despachar la sugerencia.", false);
+        }
+
+        public static DatabaseValidationResult Preasign(TravelIncident ti)
+        {
+
+            conIncidentesViajes = new conIncidentesViajes();
+
+            if (conIncidentesViajes.Abrir(ti.Id.ToString()))
+            {
+                conIncidentesViajes.MovilPreasignadoId.SetObjectId(ti.Movil);
+                if (conIncidentesViajes.Salvar(conIncidentesViajes))
+                {
+                    modDeclares.shamanMensajeria.EnviarIncidente(conIncidentesViajes.ID, conIncidentesViajes.MovilPreasignadoId.ID, true);
+                    return new DatabaseValidationResult("", true);
+                }
+            }
+
+            return new DatabaseValidationResult("No se pudo despachar la sugerencia.", false);
+
         }
 
         #endregion

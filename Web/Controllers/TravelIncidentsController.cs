@@ -58,6 +58,21 @@ namespace Shaman.Controllers
             }
         }
 
+        [HttpPost]
+        public IHttpActionResult Preasign(TravelIncidentViewModel travelIncidentViewModel)
+        {
+            try
+            {
+                TravelIncident ti = TravelIncidentVMToTravelIncidentConverter.Convert(travelIncidentViewModel);
+                DatabaseValidationResult result = TravelIncidentDal.Preasign(ti);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         #endregion
 
     }
