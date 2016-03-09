@@ -84,12 +84,14 @@ namespace Domain
 
         public string dmLongitud { get; set; }
 
-        public string SexoEdad
+        public string dmReferencia { get; set; }
+
+        public string SexoEdad { get; set; }
+
+
+        public IncidentGridDTO()
         {
-            get
-            {
-                return String.Format("{0}{1}", this.Sexo, Convert.ToString(this.Edad));
-            }
+            this.SexoEdad = string.Format("{0}{1}", this.Sexo, Convert.ToString(this.Edad));
         }
     }
 }

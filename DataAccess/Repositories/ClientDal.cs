@@ -37,9 +37,15 @@ namespace DataAccess
         {
             conClientes conClientes = new conClientes();
             conPlanes conPlanes = new conPlanes();
+            conPlanes.CleanProperties(conPlanes);
             long id = conClientes.GetIDByAbreviaturaId(client);
-            DataTable plans = conPlanes.GetAll(id);
-            return plans.DataTableToList<Plan>();
+            if (id != 0)
+            {
+                DataTable plans = conPlanes.GetAll(id);
+                return plans.DataTableToList<Plan>();
+            }
+
+            return null;
         }
 
         public static Client GetIdByAbreviaturaId(string clientAbreviaturaId)

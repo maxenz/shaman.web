@@ -67,6 +67,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ClientMember.cs" />
     <Compile Include="DatabaseValidationResult.cs" />
+    <Compile Include="Diagnosis.cs" />
     <Compile Include="Domicile.cs" />
     <Compile Include="GeographicZone.cs" />
     <Compile Include="IncidentGridDTO.cs" />

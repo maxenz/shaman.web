@@ -58,6 +58,7 @@ namespace Domain
             if (conClientesIntegrantes.ClienteId != null)
             {
                 this.Cliente = new Client(conClientesIntegrantes.ClienteId);
+                this.AbreviaturaId = conClientesIntegrantes.ClienteId.AbreviaturaId;
             }
 
             this.Domicilio = new Domicile(conClientesIntegrantes.Domicilio);

@@ -88,6 +88,12 @@ namespace Domain
 
         public string Observaciones { get; set; }
 
+        public bool ViajeRealizado { get; set; }
+
+        public Diagnosis Diagnostico { get; set; }
+
+        public string Derivacion { get; set; }
+
         #endregion
 
         #region Constructors
@@ -95,38 +101,47 @@ namespace Domain
         public Incident(){}
 
         public Incident(conIncidentes objIncident)
-        {   
-            this.AbreviaturaId = objIncident.ID.ToString();
-            this.Aviso = objIncident.Aviso;
+        {
+            this.FechaIncidente = objIncident.FecIncidente;
+            this.NroIncidente = objIncident.NroIncidente;
+            this.AbreviaturaId = objIncident.ClienteId.AbreviaturaId;
+            this.NroAfiliado = objIncident.NroAfiliado;
+            this.Telefono = objIncident.Telefono;
+
+            this.Sexo = objIncident.Sexo;
             this.Edad = Convert.ToInt32(objIncident.Edad);
-            this.GradoColor = objIncident.GradoOperativoId.ColorHexa;
+            this.Sintomas = objIncident.Sintomas;
             this.GradoOperativo = new OperativeGrade(objIncident.GradoOperativoId);
+            this.Paciente = objIncident.Paciente;
+            this.Copago = objIncident.CoPago;
+
+
+            conIncidentesDomicilios objDomicilio = new conIncidentesDomicilios();
+            objDomicilio.CleanProperties(objDomicilio);
+            if (objDomicilio.Abrir(objDomicilio.GetIDByIndex(objIncident.ID).ToString()))
+            {
+                this.Localidad = new Locality(objDomicilio.LocalidadId);
+                this.Domicilio = new Domicile(objDomicilio.Domicilio);
+            }
+
+            this.Aviso = modDeclares.shamanConfig.opeNroInterno == 0 ? objIncident.Aviso : objIncident.NroInterno;
+            this.Observaciones = objIncident.Observaciones;
+            this.GradoColor = objIncident.GradoOperativoId.ColorHexa;
             this.horLlamada = objIncident.HorarioOperativo.horLlamada.ToShortTimeString();
             this.IncidenteId = objIncident.ID.ToString();
-            this.NroIncidente = objIncident.NroIncidente;
-            this.Paciente = objIncident.Paciente;
-            this.Sexo = objIncident.Sexo;
-            this.Sintomas = objIncident.Sintomas;
-            this.FechaIncidente = objIncident.FecIncidente;
-            this.Telefono = objIncident.Telefono;
-            this.NroAfiliado = objIncident.NroAfiliado;
-            this.Copago = objIncident.CoPago;
             this.PlanId = objIncident.PlanId;
+            this.SituacionIvaId = objIncident.flgIvaGravado;
             this.ID = objIncident.ID;
-            this.Observaciones = objIncident.Observaciones;
-            
 
-            if (objIncident.ClienteId != null)
+            conIncidentesViajes objViaje = new conIncidentesViajes();
+            objViaje.CleanProperties(objViaje);
+            if (objViaje.Abrir(objViaje.GetIDByIndex(objIncident.ID).ToString()))
             {
-                this.Localidad = new Locality(objIncident.ClienteId.LocalidadId);
-                this.Domicilio = new Domicile(objIncident.ClienteId.Domicilio);
-                this.Cliente = new Client(objIncident.ClienteId);
-
-                if (objIncident.ClienteId.SituacionIvaId != null)
-                {
-                    this.SituacionIvaId = objIncident.ClienteId.SituacionIvaId.ID;
-                }
+                this.ViajeRealizado = objViaje.MotivoNoRealizacionId.ID <= 0;
+                this.Diagnostico = new Diagnosis(objViaje.MotivoNoRealizacionId);
             }
+
+            this.Derivacion = objIncident.GetLastLugarDerivacion(objIncident.ID);
             
         }
 

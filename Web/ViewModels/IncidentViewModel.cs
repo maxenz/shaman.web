@@ -29,6 +29,8 @@ namespace Shaman.ViewModels
         public OperativeGradeViewModel OperativeGradeSelected { get; set; }
         public SexViewModel SexSelected { get; set; }
 
+        public PlanViewModel PlanSelected { get; set; }
+
         public Incident ConvertViewModelToIncident()
         {
             Incident incident = new Incident();
@@ -47,8 +49,13 @@ namespace Shaman.ViewModels
             incident.Copago = Convert.ToDecimal(this.Copayment);
             incident.Sexo = this.SexSelected.Label;
             incident.Edad = this.Age;
-            incident.SituacionIvaId = this.IvaSituationSelected.Id;
+
+            incident.SituacionIvaId = this.IvaSituationSelected != null ? this.IvaSituationSelected.Id : 0;
             incident.Observaciones = this.Observations;
+            if (this.PlanSelected != null)
+            {
+                incident.PlanId = this.PlanSelected.Id.ToString();
+            }
 
             return incident;
         }

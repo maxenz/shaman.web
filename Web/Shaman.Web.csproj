@@ -1785,6 +1785,7 @@
     <Compile Include="ViewModels\DespachoInformationViewModel.cs" />
     <Compile Include="ViewModels\IncidentViewModel.cs" />
     <Compile Include="ViewModels\OperativeGradeViewModel.cs" />
+    <Compile Include="ViewModels\PlanViewModel.cs" />
     <Compile Include="ViewModels\SexViewModel.cs" />
     <Compile Include="ViewModels\TravelIncidentViewModel.cs" />
     <Compile Include="ViewModels\Converters\TravelIncidentVMToTravelIncidentConverter.cs" />
