@@ -21,6 +21,7 @@ namespace DataAccess
                         if (startup.AbrirConexion(modDeclares.cnnDefault))
                         {
                             modFechas.InitDateVars();
+                            modNumeros.InitSepDecimal();
                             modDeclares.shamanConfig = new conConfiguracion();
                             modDeclares.shamanConfig.UpConfig();
                             bool cambiar = false;

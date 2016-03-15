@@ -56,6 +56,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -1751,6 +1753,12 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="app\views\login.html" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.14.3.min.js" />
+    <None Include="Service References\GPShamanWS\configuration91.svcinfo" />
+    <None Include="Service References\GPShamanWS\configuration.svcinfo" />
+    <None Include="Service References\GPShamanWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1777,6 +1785,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GPShamanWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DomicileViewModel.cs" />
     <Compile Include="ViewModels\GenericLabelViewModel.cs" />
     <Compile Include="ViewModels\IvaViewModel.cs" />
@@ -1797,6 +1810,7 @@
     <Content Include="Views\Home\ViewOrder.cshtml" />
     <Content Include="Views\Shared\Order.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <None Include="Service References\GPShamanWS\Service.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1824,6 +1838,12 @@
       <Project>{1a8dfae4-4e6f-4ad5-9b09-cfa395aa2065}</Project>
       <Name>ShamanExpressDLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GPShamanWS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

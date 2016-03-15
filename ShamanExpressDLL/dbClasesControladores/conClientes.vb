@@ -367,7 +367,12 @@ Public Class conClientes
 
             Dim SQL As String
 
-            SQL = "SELECT * FROM viewClientes ORDER BY [AbreviaturaId] DESC "
+            SQL = "SELECT cli.ID, cli.AbreviaturaId, cli.RazonSocial, rub.Descripcion AS Rubro, loc.AbreviaturaId AS Localidad, "
+            SQL = SQL & "cli.Domicilio "
+            SQL = SQL & "FROM Clientes cli "
+            SQL = SQL & "LEFT JOIN RubrosClientes rub ON cli.RubroClienteId = rub.ID "
+            SQL = SQL & "LEFT JOIN Localidades loc ON cli.LocalidadId = loc.ID "
+            SQL = SQL & "ORDER BY cli.AbreviaturaId "
 
             Dim cmdCli As New SqlCommand(SQL, cnnsNET(Me.myCnnName), cnnsTransNET(Me.myCnnName))
             Dim dt As New DataTable

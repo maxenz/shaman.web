@@ -1,5 +1,12 @@
-Module modNumeros
+Public Module modNumeros
     Public wSepDecimal As String
+    Public Sub InitSepDecimal()
+        If CDec("2.5") > 3 Then
+            wSepDecimal = ","
+        Else
+            wSepDecimal = "."
+        End If
+    End Sub
     Public Function prnDbl(ByVal pVal As String, Optional ByVal pDig As Integer = 2, Optional ByVal pNul As Boolean = False) As String
         Dim vIdx As Integer, vFor As String
         vFor = ""
